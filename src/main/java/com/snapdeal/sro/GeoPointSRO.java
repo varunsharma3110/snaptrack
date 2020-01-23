@@ -24,4 +24,12 @@ public class GeoPointSRO {
     public void compare(GeoPointSRO p) {
 
     }
+
+    public GeoPointSRO() {
+    }
+
+    public GeoPointSRO(GeoAngleSRO lattitude, GeoAngleSRO longitude) {
+        this.lattitude = lattitude;
+        this.longitude = longitude;
+    }
 }

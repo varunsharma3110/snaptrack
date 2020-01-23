@@ -71,4 +71,5 @@ public class Controller {
     private double deg2rad(double degree){
          return degree * (Math.PI/180);
     }
+
 }
