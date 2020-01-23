@@ -8,20 +8,13 @@ import java.util.List;
 
 public class SnapTrackMasterDecisonResponse  extends  ServiceResponse  {
 
-    private List<SnaptrackMasterDecision> result;
+    private String json;
 
-    public List<SnaptrackMasterDecision> getResult() {
-        return result;
+    public String getJson() {
+        return json;
     }
 
-    public void setResult(List<SnaptrackMasterDecision> result) {
-        this.result = result;
-    }
-
-    @Override
-    public String toString() {
-        return "SnapTrackMasterDecisonResponse{" +
-                "result=" + result +
-                '}';
+    public void setJson(String json) {
+        this.json = json;
     }
 }
