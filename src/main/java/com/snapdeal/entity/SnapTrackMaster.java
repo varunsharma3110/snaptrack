@@ -1,4 +1,4 @@
-package com.snapdeal.snaptrack;
+package com.snapdeal.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
