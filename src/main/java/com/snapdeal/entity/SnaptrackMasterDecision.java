@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "snaptrack_master_decison")
+@Table(name = "snaptrack_master_decision")
 public class SnaptrackMasterDecision implements Serializable {
 
     @Id
