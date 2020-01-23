@@ -48,4 +48,40 @@ public class AddressSRO {
     public void setState(String state) {
         this.state = state;
     }
+
+    public Long getPinCode() {
+        return pinCode;
+    }
+
+    public void setPinCode(Long pinCode) {
+        this.pinCode = pinCode;
+    }
+
+    @Override
+    public String toString() {
+        return "AddressSRO{" +
+                "houseNo='" + houseNo + '\'' +
+                ", streetName='" + streetName + '\'' +
+                ", locality='" + locality + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", pinCode=" + pinCode +
+                '}';
+    }
+
+    public String getStringAddress() {
+        String s = houseNo + "," + streetName + "," + locality + "," + city + "," + state + "," + pinCode;
+        return s.replaceAll("\\s", "+");
+    }
+
+    public static void main(String[] args) {
+        AddressSRO sro = new AddressSRO();
+        sro.setHouseNo("Flat No 1");
+        sro.setStreetName("Begum Zaidi Market");
+        sro.setLocality("Moti Bagh");
+        sro.setCity("New Delhi");
+        sro.setState("Delhi");
+        sro.setPinCode(110021L);
+        System.out.println(sro.getStringAddress());
+    }
 }
