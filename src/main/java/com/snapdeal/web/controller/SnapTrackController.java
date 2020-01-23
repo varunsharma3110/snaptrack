@@ -1,8 +1,11 @@
 package com.snapdeal.web.controller;
 
+import com.snapdeal.entity.SnaptrackMasterDecision;
+import com.snapdeal.enums.RTOType;
 import com.snapdeal.repository.ISnapTrackMasterDecisonRepository;
 import com.snapdeal.repository.ISnapTrackRepository;
 import com.snapdeal.sro.*;
+import com.snapdeal.web.services.DecisionTreeService;
 import com.snapdeal.web.services.GeoLocationService;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -31,9 +34,11 @@ public class SnapTrackController {
     @Autowired
     ISnapTrackMasterDecisonRepository decisonRepository;
 
-
     @Autowired
     private GeoLocationService geoLocationService;
+
+    @Autowired
+    DecisionTreeService decisionTreeService;
 
     @PostMapping("/getGeoLocation")
     @ResponseBody
@@ -95,7 +100,9 @@ public class SnapTrackController {
     @GetMapping ("getDecisonTreeFromOrderId")
     public SnapTrackMasterDecisonResponse getDecison(@RequestParam String orderId){
         SnapTrackMasterDecisonResponse response = new SnapTrackMasterDecisonResponse();
-        response.setResult(decisonRepository.findDecisonTreeByOrderId(orderId));
+        SnaptrackMasterDecision decision = decisonRepository.findDecisonTreeByOrderId(orderId).get(0);
+        String json = decisionTreeService.createDecisionJson(RTOType.CD, decision);
+        response.setJson(json);
         response.setSuccess(true);
         response.setMessage("Success");
         return  response;
