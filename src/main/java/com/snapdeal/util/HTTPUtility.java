@@ -16,12 +16,9 @@ import static com.jayway.restassured.RestAssured.given;
 
 public class HTTPUtility {
 
-    private static final Logger LOG = Logger.getLogger("HTTPUtility");
+    public JSONObject makeGetRequest(String address) throws Exception {
 
-    public JSONObject makeGetRequest(String url) throws Exception {
-
-        LOG.info(new Throwable().getStackTrace()[1].toString());
-        LOG.info("Request URL: " + url);
+        String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyCNhVHyewp6jmYBHtMFYpP68LSb3QuL_iw";
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
@@ -42,68 +39,5 @@ public class HTTPUtility {
         LOG.info("Response : " + response.toString());
 
         return new JSONObject(response.toString());
-    }
-
-    public JSONObject makePostRequest(String path, String body) throws JSONException {
-        RequestSpecBuilder builder = new RequestSpecBuilder();
-        builder.setBody(body);
-        LOG.info(new Throwable().getStackTrace()[1].toString());
-        LOG.info("Request URL: " + path);
-        LOG.info("Request body : " + body);
-        builder.setContentType("application/json; charset=UTF-8");
-        RequestSpecification requestSpec = builder.build();
-        try {
-            Response response = given().authentication().preemptive().basic("", "").spec(requestSpec).when().post(path);
-            LOG.info("Response : " + response.body().asString());
-            return new JSONObject(response.body().asString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return new JSONObject();
-    }
-
-    public JSONObject makePostRequest(String path,String auth, String body) throws JSONException {
-        RequestSpecBuilder builder = new RequestSpecBuilder();
-        builder.setBody(body);
-        LOG.info(new Throwable().getStackTrace()[1].toString());
-        LOG.info("Request URL: " + path);
-        LOG.info("Request auth: "+ auth);
-        LOG.info("Request body : " + body);
-        builder.setContentType("application/json; charset=UTF-8");
-        RequestSpecification requestSpec = builder.build();
-        try {
-            Response response = given().header("X-SD-AD-TOKEN",auth).spec(requestSpec).when().post(path);
-            LOG.info("Response : " + response.body().asString());
-            return new JSONObject(response.body().asString());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return new JSONObject();
-    }
-
-    public JSONObject makeGetRequest(String url,String auth)throws Exception{
-        URL obj = new URL(url);
-        LOG.info(new Throwable().getStackTrace()[1].toString());
-        LOG.info("Request URL: " + url);
-        HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-
-        con.setRequestMethod("GET");
-        con.setRequestProperty("X-SD-AD-TOKEN", auth);
-
-        int responseCode = con.getResponseCode();
-
-        BufferedReader in = new BufferedReader(new InputStreamReader(
-                con.getInputStream()));
-        String inputLine;
-        StringBuffer response = new StringBuffer();
-
-        while ((inputLine = in.readLine()) != null) {
-            response.append(inputLine);
-        }
-        in.close();
-
-        LOG.info("Response : " + response.toString());
-        return new JSONObject(response.toString());
-
     }
 }

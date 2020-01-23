@@ -5,5 +5,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class GeoLocationService {
 
-    public
+    public void getGeoLocation(String address) {
+
+    }
 }

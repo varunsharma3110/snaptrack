@@ -18,9 +18,7 @@ public class Controller {
     @PostMapping("/getGeoLocation")
     public GeoPointSRO getGeoPoint(AddressSRO addressSRO) {
         GeoPointSRO sro = new GeoPointSRO();
-        sro.setLattitude(new GeoAngleSRO(12.1233D, 'N'));
-        sro.setLongitude(new GeoAngleSRO(12.1233D, 'E'));
-        LOG.info("hi");
+        String address = addressSRO.getStringAddress();
         return sro;
     }
 
