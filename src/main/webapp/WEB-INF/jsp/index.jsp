@@ -75,7 +75,7 @@ $('#fetchAllRecords').click(function() {
 
 			});
 
-        ;
+
     });
 
     function fetchAllRecords(t) {
@@ -92,7 +92,23 @@ $('#fetchAllRecords').click(function() {
     function tableFunction(i){
 
     var txt = i.innerText;
-     alert(txt);
+     $.ajax({
+    				type : "GET",
+    				data : {
+                    		orderId : txt
+                    },
+    				dataType : 'json',
+    				async : false,
+    				url : "getDecisonTreeFromOrderId",
+    				success : function(data) {
+    					console.log(data);
+    					alert("Success");
+    				},
+    				error : function() {
+    					alert("error");
+    				}
+
+    			});
 
     }
 
