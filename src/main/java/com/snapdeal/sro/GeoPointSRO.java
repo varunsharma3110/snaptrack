@@ -21,5 +21,11 @@ public class GeoPointSRO {
         this.longitude = longitude;
     }
 
+    public GeoPointSRO() {
+    }
 
+    public GeoPointSRO(GeoAngleSRO lattitude, GeoAngleSRO longitude) {
+        this.lattitude = lattitude;
+        this.longitude = longitude;
+    }
 }
