@@ -18,6 +18,7 @@ public class SnapTrackMaster implements Serializable {
     private String calledStatus;
     private String callDuration;
     private Date created;
+    private String rtoReason;
 
     public Integer getId() {
         return id;
@@ -67,6 +68,14 @@ public class SnapTrackMaster implements Serializable {
         this.callerStatus = callerStatus;
     }
 
+    public String getRtoReason() {
+        return rtoReason;
+    }
+
+    public void setRtoReason(String rtoReason) {
+        this.rtoReason = rtoReason;
+    }
+
     public String getCalledStatus() {
         return calledStatus;
     }
@@ -98,11 +107,12 @@ public class SnapTrackMaster implements Serializable {
                 ", orderId='" + orderId + '\'' +
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
-                ", otp=" + otp +
+                ", otp='" + otp + '\'' +
                 ", callerStatus='" + callerStatus + '\'' +
                 ", calledStatus='" + calledStatus + '\'' +
                 ", callDuration='" + callDuration + '\'' +
                 ", created=" + created +
+                ", rtoReason='" + rtoReason + '\'' +
                 '}';
     }
 }
