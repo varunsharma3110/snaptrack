@@ -8,10 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableAutoConfiguration
-
-
 @ComponentScan(basePackages = "com.snapdeal.web.controller, com.snapdeal.web.services")
-
 public class SnapTrackApplication {
 
 	public static void main(String[] args) {

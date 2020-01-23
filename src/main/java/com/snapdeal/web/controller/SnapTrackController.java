@@ -1,16 +1,12 @@
 package com.snapdeal.web.controller;
 
-import com.snapdeal.snaptrack.SnapTrackMaster;
 import com.snapdeal.snaptrack.SnapTrackRepository;
 import com.snapdeal.sro.AddressSRO;
 import com.snapdeal.sro.GeoAngleSRO;
 import com.snapdeal.sro.GeoPointSRO;
-<<<<<<< HEAD:src/main/java/com/snapdeal/web/controller/SnapTrackController.java
 import com.snapdeal.sro.SnapTrackResponse;
-=======
 import com.snapdeal.web.services.GeoLocationService;
 import org.json.JSONObject;
->>>>>>> 836552de12df10b61c46e4f3d97efe872e59eee6:src/main/java/com/snapdeal/web/controller/Controller.java
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
