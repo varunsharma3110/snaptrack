@@ -55,15 +55,35 @@
 <script type="text/javascript">
 
 $('#fetchAllRecords').click(function() {
-        fetchAllRecords();
+        $.ajax({
+				type : "GET",
+				dataType : 'json',
+				async : false,
+				url : "getFromData",
+				success : function(data) {
+					t = data.results;
+					console.log(t);
+					fetchAllRecords(t)
+					for( var i=0 ;i <t.length ;i++) {
+					console.log(t[i].orderId);
+					}
+
+				},
+				error : function() {
+					alert("error");
+				}
+
+			});
+
+        ;
     });
 
-    function fetchAllRecords() {
+    function fetchAllRecords(t) {
     $('#tab_logic').empty();
     var html="";
-    html+="<thead> <tr>  <th scope='col'>Order Id</th> <th scope='col'>Latitude/Longitude</th> <th scope='col'>OTP</th> <th scope='col'>Call Status</th> <th scope='col'>Call Duration</th> <th scope='col'>Call Unit</th> </tr> </thead> <tbody> ";
-    for (var i = 1; i <= 6; i++) {
-      html+="<tr> <td onclick='tableFunction(this)'> <p id='trow"+i+"'> Data </p></td> <td> <p> Data </p></td> <td> <p> Data </p></td> <td> <p> Data </p></td> <td> <p> Data </p></td> <td> <p> Data </p></td></tr>"
+    html+="<thead> <tr>  <th scope='col'>Order Id</th> <th scope='col'>Latitude</th> <th scope='col'>Longitude</th> <th scope='col'>OTP</th> <th scope='col'>Caller Status</th> <th scope='col'>Called Status</th> <th scope='col'>Call Unit</th> </tr> </thead> <tbody> ";
+    for (var i = 0; i < t.length ; i++) {
+      html+="<tr> <td onclick='tableFunction(this)'> <p id='trow"+i+"'>" + t[i].orderId  + "</p></td> <td> <p> " + t[i].latitude +"</p></td> <td> <p>  " + t[i].longitude + "</p></td> <td> <p> " +t[i].otp +"</p></td> <td> <p>  " + t[i].callerStatus + "</p></td> <td>  <p> " +  t[i].calledStatus + " </p></td> <td> <p> "+  t[i].callDuration  +" </p></td></tr>"
     }
     html+="</tbody>";
     $('#tab_logic').append(html);
