@@ -18,6 +18,7 @@ public class SnaptrackMasterDecision implements Serializable {
     private Boolean call_validated;
     private Boolean loc_validated;
     private Date created;
+    private String rtoReason;
 
     public Integer getId() {
         return id;
@@ -65,6 +66,14 @@ public class SnaptrackMasterDecision implements Serializable {
 
     public void setCreated(Date created) {
         this.created = created;
+    }
+
+    public String getRtoReason() {
+        return rtoReason;
+    }
+
+    public void setRtoReason(String rtoReason) {
+        this.rtoReason = rtoReason;
     }
 
     @Override
