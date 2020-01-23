@@ -1,19 +1,30 @@
 package com.snapdeal.web.controller;
 
+import com.snapdeal.snaptrack.SnapTrackMaster;
+import com.snapdeal.snaptrack.SnapTrackRepository;
 import com.snapdeal.sro.AddressSRO;
 import com.snapdeal.sro.GeoAngleSRO;
 import com.snapdeal.sro.GeoPointSRO;
+import com.snapdeal.sro.SnapTrackResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @EnableAutoConfiguration
-public class Controller {
+public class SnapTrackController {
 
-    Logger LOG = LoggerFactory.getLogger(Controller.class);
+    Logger LOG = LoggerFactory.getLogger(SnapTrackController.class);
+
+    @Autowired
+    SnapTrackRepository repository;
+
 
     @PostMapping("/getGeoLocation")
     public GeoPointSRO getGeoPoint(AddressSRO addressSRO) {
@@ -27,5 +38,14 @@ public class Controller {
     @PostMapping("compareTwoPoints")
     public void compareTwoPoints(GeoPointSRO point1, GeoPointSRO point2) {
 
+    }
+
+    @GetMapping ("getFromData")
+    public SnapTrackResponse getAll(){
+        SnapTrackResponse response = new SnapTrackResponse();
+        response.setResults( repository.findAll());
+        response.setSuccess(true);
+        response.setMessage("Success");
+        return  response;
     }
 }
