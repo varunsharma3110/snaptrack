@@ -1,6 +1,8 @@
 package com.snapdeal.sro;
 
-public class AddressSRO {
+import java.io.Serializable;
+
+public class AddressSRO implements Serializable {
 
     private String houseNo;
     private String streetName;
@@ -79,7 +81,7 @@ public class AddressSRO {
     }
 
     public String getStringAddress() {
-        String s = houseNo + "," + streetName + "," + locality + "," + city + "," + state + "," + pinCode + "&key=" + apiKey;
+        String s = houseNo + "," + streetName + "," + locality + "," + city + "," + state + "," + pinCode + "&key=AIzaSyCNhVHyewp6jmYBHtMFYpP68LSb3QuL_iw";
         return s.replaceAll("\\s", "+");
     }
 

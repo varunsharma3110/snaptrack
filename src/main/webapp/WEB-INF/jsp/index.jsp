@@ -16,17 +16,65 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+ <script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.js"></script>
+<script
+	src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+ <script
+	src="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/a549aa8780dbda16f6cff545aeabc3d71073911e/src/js/bootstrap-datetimepicker.js"></script>
+	<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
 <style type="text/css">
 
 </style>
 </head>
 <body>
-
-<button type="button" class="btn btn-default" id="fetchAllRecrds">Fetch All Records </button>
+<br>
+<br>
+<center>
+<button type="button" class="btn btn-default" id="fetchAllRecords">Fetch All Records </button>
+</center>
+<br>
+<br>
+<center>
+<table class="table" id="tab_logic">
+  </table>
+</center>
 
 </body>
 
 <script type="text/javascript">
+
+$('#fetchAllRecords').click(function() {
+        fetchAllRecords();
+    });
+
+    function fetchAllRecords() {
+    $('#tab_logic').empty();
+    var html="";
+    html+="<thead> <tr>  <th scope='col'>Order Id</th> <th scope='col'>Latitude/Longitude</th> <th scope='col'>OTP</th> <th scope='col'>Call Status</th> <th scope='col'>Call Duration</th> <th scope='col'>Call Unit</th> </tr> </thead> <tbody> ";
+    for (var i = 1; i <= 6; i++) {
+      html+="<tr> <td onclick='tableFunction(this)'> <p id='trow"+i+"'> Data </p></td> <td> <p> Data </p></td> <td> <p> Data </p></td> <td> <p> Data </p></td> <td> <p> Data </p></td> <td> <p> Data </p></td></tr>"
+    }
+    html+="</tbody>";
+    $('#tab_logic').append(html);
+
+    }
+    function tableFunction(i){
+
+    var txt = i.innerText;
+     alert(txt);
+
+    }
 
 </script>
 </html>
