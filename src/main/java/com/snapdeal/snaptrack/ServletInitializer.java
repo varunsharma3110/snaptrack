@@ -1,4 +1,4 @@
-package com.snapdeal.shiptrack;
+package com.snapdeal.snaptrack;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

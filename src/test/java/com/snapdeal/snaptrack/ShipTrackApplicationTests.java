@@ -1,4 +1,4 @@
-package com.snapdeal.shiptrack;
+package com.snapdeal.snaptrack;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

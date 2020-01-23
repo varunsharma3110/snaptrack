@@ -1,4 +1,4 @@
-package com.snapdeal.shiptrack;
+package com.snapdeal.snaptrack;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
