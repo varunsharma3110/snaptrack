@@ -10,6 +10,7 @@ import javax.annotation.PostConstruct;
 @Service
 public class GeoLocationService {
 
+
     HTTPUtility httpUtility;
 
     @PostConstruct
@@ -26,4 +27,5 @@ public class GeoLocationService {
         }
         return jsonObject;
     }
+
 }

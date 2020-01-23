@@ -21,10 +21,6 @@ public class GeoPointSRO {
         this.longitude = longitude;
     }
 
-    public void compare(GeoPointSRO p) {
-
-    }
-
     public GeoPointSRO() {
     }
 

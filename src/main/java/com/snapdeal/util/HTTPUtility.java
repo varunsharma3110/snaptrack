@@ -1,18 +1,11 @@
 package com.snapdeal.util;
 
-import com.jayway.restassured.builder.RequestSpecBuilder;
-import com.jayway.restassured.response.Response;
-import com.jayway.restassured.specification.RequestSpecification;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.logging.Logger;
-
-import static com.jayway.restassured.RestAssured.given;
 
 public class HTTPUtility {
 
