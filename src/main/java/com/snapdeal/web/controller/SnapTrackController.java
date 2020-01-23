@@ -1,23 +1,15 @@
 package com.snapdeal.web.controller;
 
-import com.snapdeal.snaptrack.SnapTrackRepository;
-import com.snapdeal.sro.AddressSRO;
-import com.snapdeal.sro.GeoAngleSRO;
-import com.snapdeal.sro.GeoPointSRO;
-import com.snapdeal.sro.SnapTrackResponse;
+import com.snapdeal.repository.ISnapTrackMasterDecisonRepository;
+import com.snapdeal.repository.ISnapTrackRepository;
+import com.snapdeal.sro.*;
 import com.snapdeal.web.services.GeoLocationService;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @EnableAutoConfiguration
@@ -26,7 +18,10 @@ public class SnapTrackController {
     Logger LOG = LoggerFactory.getLogger(SnapTrackController.class);
 
     @Autowired
-    SnapTrackRepository repository;
+    ISnapTrackRepository repository;
+
+    @Autowired
+    ISnapTrackMasterDecisonRepository decisonRepository;
 
 
     @Autowired
@@ -76,8 +71,8 @@ public class SnapTrackController {
     }
 
     @GetMapping ("getFromData")
-    public SnapTrackResponse getAll(){
-        SnapTrackResponse response = new SnapTrackResponse();
+    public SnapTrackMasterResponse getAll(){
+        SnapTrackMasterResponse response = new SnapTrackMasterResponse();
         response.setResults( repository.findAll());
         response.setSuccess(true);
         response.setMessage("Success");
@@ -86,5 +81,15 @@ public class SnapTrackController {
 
     private double deg2rad(double degree){
          return degree * (Math.PI/180);
+    }
+
+
+    @GetMapping ("getDecisonTreeFromOrderId")
+    public SnapTrackMasterDecisonResponse getDecison(@RequestParam String orderId){
+        SnapTrackMasterDecisonResponse response = new SnapTrackMasterDecisonResponse();
+        response.setResult(decisonRepository.findDecisonTreeByOrderId(orderId));
+        response.setSuccess(true);
+        response.setMessage("Success");
+        return  response;
     }
 }
