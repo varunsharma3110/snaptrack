@@ -33,12 +33,16 @@ public class Controller {
         object = object.getJSONArray("results").getJSONObject(0).getJSONObject("geometry").getJSONObject("location");
         lat.setAngle(object.getDouble("lat"));
         lat.setDirection('N');
-        if (lat.getAngle() < 0)
+        if (lat.getAngle() < 0) {
+            lat.setAngle(lat.getAngle() * 1);
             lat.setDirection('S');
+        }
         lon.setAngle(object.getDouble("lng"));
         lon.setDirection('W');
-        if (lat.getAngle() < 0)
-            lat.setDirection('E');
+        if (lon.getAngle() < 0) {
+            lon.setAngle(lon.getAngle() * 1);
+            lon.setDirection('E');
+        }
         sro.setLongitude(lon);
         sro.setLattitude(lat);
         return sro;
