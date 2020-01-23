@@ -8,6 +8,7 @@ public class AddressSRO {
     private String city;
     private String state;
     private Long pinCode;
+    private String apiKey;
 
     public String getHouseNo() {
         return houseNo;
@@ -57,6 +58,14 @@ public class AddressSRO {
         this.pinCode = pinCode;
     }
 
+    public String getApiKey() {
+        return apiKey;
+    }
+
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
+    }
+
     @Override
     public String toString() {
         return "AddressSRO{" +
@@ -70,7 +79,7 @@ public class AddressSRO {
     }
 
     public String getStringAddress() {
-        String s = houseNo + "," + streetName + "," + locality + "," + city + "," + state + "," + pinCode;
+        String s = houseNo + "," + streetName + "," + locality + "," + city + "," + state + "," + pinCode + "&key=" + apiKey;
         return s.replaceAll("\\s", "+");
     }
 

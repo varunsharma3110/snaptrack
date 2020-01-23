@@ -18,7 +18,7 @@ public class HTTPUtility {
 
     public JSONObject makeGetRequest(String address) throws Exception {
 
-        String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyCNhVHyewp6jmYBHtMFYpP68LSb3QuL_iw";
+        String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + address;
         URL obj = new URL(url);
         HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 
@@ -36,7 +36,6 @@ public class HTTPUtility {
             response.append(inputLine);
         }
         in.close();
-        LOG.info("Response : " + response.toString());
 
         return new JSONObject(response.toString());
     }
