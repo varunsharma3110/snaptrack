@@ -3,7 +3,9 @@ package com.snapdeal.web.services;
 import com.snapdeal.entity.SnaptrackMasterDecision;
 import com.snapdeal.enums.RTOType;
 import org.json.JSONObject;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DecisionTreeService {
 
     public String createDecisionJson(RTOType type, SnaptrackMasterDecision decision) {
@@ -15,7 +17,7 @@ public class DecisionTreeService {
                 if (decision.getOtp_validated()) {
                     JSONObject child = new JSONObject();
                     child.put("name", "OTP/Yes");
-                    object.put("parent", "OTPAvailable");
+                    child.put("parent", "OTPAvailable");
                     object.put("children", child);
                 }
                 else {

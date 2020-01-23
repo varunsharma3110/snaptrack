@@ -100,6 +100,7 @@ public class SnapTrackController {
     @GetMapping ("getDecisonTreeFromOrderId")
     public SnapTrackMasterDecisonResponse getDecison(@RequestParam String orderId){
         SnapTrackMasterDecisonResponse response = new SnapTrackMasterDecisonResponse();
+        List<SnaptrackMasterDecision> decisions = decisonRepository.findDecisonTreeByOrderId(orderId);
         SnaptrackMasterDecision decision = decisonRepository.findDecisonTreeByOrderId(orderId).get(0);
         String json = decisionTreeService.createDecisionJson(RTOType.CD, decision);
         response.setJson(json);
