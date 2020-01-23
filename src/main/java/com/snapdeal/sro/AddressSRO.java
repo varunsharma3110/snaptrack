@@ -1,6 +1,8 @@
 package com.snapdeal.sro;
 
-public class AddressSRO {
+import java.io.Serializable;
+
+public class AddressSRO implements Serializable {
 
     private String houseNo;
     private String streetName;
