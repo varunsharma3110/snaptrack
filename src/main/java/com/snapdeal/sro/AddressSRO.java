@@ -1,6 +1,8 @@
 package com.snapdeal.sro;
 
-public class AddressSRO {
+import java.io.Serializable;
+
+public class AddressSRO implements Serializable {
 
     private String houseNo;
     private String streetName;
@@ -8,6 +10,7 @@ public class AddressSRO {
     private String city;
     private String state;
     private Long pinCode;
+    private String apiKey;
 
     public String getHouseNo() {
         return houseNo;
@@ -47,5 +50,49 @@ public class AddressSRO {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public Long getPinCode() {
+        return pinCode;
+    }
+
+    public void setPinCode(Long pinCode) {
+        this.pinCode = pinCode;
+    }
+
+    public String getApiKey() {
+        return apiKey;
+    }
+
+    public void setApiKey(String apiKey) {
+        this.apiKey = apiKey;
+    }
+
+    @Override
+    public String toString() {
+        return "AddressSRO{" +
+                "houseNo='" + houseNo + '\'' +
+                ", streetName='" + streetName + '\'' +
+                ", locality='" + locality + '\'' +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", pinCode=" + pinCode +
+                '}';
+    }
+
+    public String getStringAddress() {
+        String s = houseNo + "," + streetName + "," + locality + "," + city + "," + state + "," + pinCode + "&key=" + apiKey;
+        return s.replaceAll("\\s", "+");
+    }
+
+    public static void main(String[] args) {
+        AddressSRO sro = new AddressSRO();
+        sro.setHouseNo("Flat No 1");
+        sro.setStreetName("Begum Zaidi Market");
+        sro.setLocality("Moti Bagh");
+        sro.setCity("New Delhi");
+        sro.setState("Delhi");
+        sro.setPinCode(110021L);
+        System.out.println(sro.getStringAddress());
     }
 }
