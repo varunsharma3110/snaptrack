@@ -136,8 +136,8 @@ $('#fetchAllRecords').click(function() {
     				async : false,
     				url : "getDecisonTreeFromOrderId",
     				success : function(data) {
-    				callTree(data);
-    					console.log(data);
+    				callTree(data.json);
+    					console.log(data.json);
 
     				},
     				error : function() {
@@ -172,13 +172,7 @@ $('#fetchAllRecords').click(function() {
         //  update(root);
         //});
         //var jsonObj = new Packages.com.snapdeal.snaptrack.SnapTrackApplication()
-        var jsonStr = "[\n" +
-                       "  {\n" +
-                       "  \"name\": \"OTPAvailable\",\n" +
-                       "  \"parent\": \"null\",\n" +
-                       "  \"children\": []\n" +
-                       "}\n" +
-                       "]";
+        var jsonStr = treeString;
         var root = JSON.parse(jsonStr);
         var nodes = tree.nodes(root).reverse(),
             	  links = tree.links(nodes);

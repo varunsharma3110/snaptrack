@@ -61,6 +61,7 @@ public class DecisionTreeService {
             case CNA:
                 object.put("name", "getLocation/Yes");
                 object.put("parent", "null");
+
         }
         return object.toString();
     }
