@@ -19,13 +19,22 @@ public class ServiceInitializer {
     @Autowired
     ProbabilityCalculatorService probabilityCalculatorService;
 
+    @Autowired
+    AddressService addressService;
+
 
     @PostConstruct
     private void init(){
 
-        List<SnapTrackMaster> unprocessedSnapTrackMaster=snapTrackRepository.findAllUnprocessedYellowZoneOrderIds(false, Decision.YELLOW_ZONE.name());
+        List<SnapTrackMaster> unprocessedYellowZoneSnapTrackMaster=snapTrackRepository.findAllUnprocessedYellowZoneOrderIds(false, Decision.YELLOW_ZONE.name());
 
-        probabilityCalculatorService.feedProbabilityPercentageforYellowZoneTickets(unprocessedSnapTrackMaster);
+        probabilityCalculatorService.feedProbabilityPercentageforYellowZoneTickets(unprocessedYellowZoneSnapTrackMaster);
+
+        List<SnapTrackMaster> unprocessedSnapTrackMaster=snapTrackRepository.findAllUnprocessedOrders(false);
+
+        addressService.feedDistanceBetweenCustomerAndCourierLocation(unprocessedSnapTrackMaster);
+
+
 
     }
 }

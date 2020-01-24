@@ -15,12 +15,6 @@ import java.util.List;
 @Service
 public class AddressService {
 
-
-    @PostConstruct
-    public void init() {
-//        findDiffBetweenTwoLocations();
-    }
-
     @Autowired
     private GeoLocationService geoLocationService;
 
@@ -79,6 +73,38 @@ public class AddressService {
 
         }
 
+
+    }
+
+    public void feedDistanceBetweenCustomerAndCourierLocation(List<SnapTrackMaster> unprocessedOrders) {
+
+        AddressSRO customerAddress = getAddressByOrderId(unprocessedOrders.get(0).getOrderId());
+
+        GeoPointSRO customerGeoLocation = getGeoLocationFromAddress(customerAddress);
+
+        for (SnapTrackMaster unprocessedOrder : unprocessedOrders) {
+
+            //  AddressSRO address = getAddressByOrderId(unprocessedOrder.getOrderId());
+
+            GeoPointSRO courierGeoLocation = new GeoPointSRO();
+
+            GeoAngleSRO latGeoAngle = new GeoAngleSRO();
+            latGeoAngle.setAngle(unprocessedOrder.getFeLat());
+
+            GeoAngleSRO longGeoAngle = new GeoAngleSRO();
+            longGeoAngle.setAngle(unprocessedOrder.getFeLong());
+
+            courierGeoLocation.setLattitude(latGeoAngle);
+            courierGeoLocation.setLongitude(latGeoAngle);
+
+            double diff = geoLocationService.compareTwoPoints(courierGeoLocation, customerGeoLocation);
+
+            unprocessedOrder.setDistance(diff);
+
+            snapTrackRepository.save(unprocessedOrder);
+
+
+        }
 
     }
 
