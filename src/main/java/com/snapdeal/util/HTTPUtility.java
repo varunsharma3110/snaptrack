@@ -1,11 +1,16 @@
 package com.snapdeal.util;
 
+import com.jayway.restassured.builder.RequestSpecBuilder;
+import com.jayway.restassured.response.Response;
+import com.jayway.restassured.specification.RequestSpecification;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import static com.jayway.restassured.RestAssured.given;
 
 public class HTTPUtility {
 
@@ -20,10 +25,12 @@ public class HTTPUtility {
 
         int responseCode = con.getResponseCode();
 
+        if (responseCode != 200)
+            return null;
         BufferedReader in = new BufferedReader(new InputStreamReader(
                 con.getInputStream()));
         String inputLine;
-        StringBuffer response = new StringBuffer();
+        StringBuilder response = new StringBuilder();
 
         while ((inputLine = in.readLine()) != null) {
             response.append(inputLine);
@@ -31,5 +38,25 @@ public class HTTPUtility {
         in.close();
 
         return new JSONObject(response.toString());
+    }
+
+    private String postRequest(String path, String body) {
+        RequestSpecBuilder builder = new RequestSpecBuilder();
+        builder.setBody(body);
+        builder.setContentType("application/json; charset=UTF-8");
+        RequestSpecification requestSpec = builder.build();
+        Response response;
+        boolean flag = true;
+        int retry = 0;
+        while (flag && retry < 10) {
+            try {
+                response = given().spec(requestSpec).when().post(path);
+                flag = false;
+                return response.body().asString();
+            } catch (Exception e) {
+                retry++;
+            }
+        }
+        return null;
     }
 }
