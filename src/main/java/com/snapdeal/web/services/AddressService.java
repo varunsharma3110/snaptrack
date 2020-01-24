@@ -75,7 +75,7 @@ public class AddressService {
             System.out.println(geoPointSRO.getLattitude().getAngle());
             SnapTrackMaster obj = snapTrackRepository.findOneByOrderId(orderId).get(0);
             obj.setLatitude(geoPointSRO.getLattitude().getAngle());
-            snapTrackRepository.saveAndFlush(obj);
+            snapTrackRepository.save(obj);
 
         }
 
