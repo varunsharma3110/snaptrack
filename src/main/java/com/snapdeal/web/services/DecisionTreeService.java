@@ -162,17 +162,17 @@ public class DecisionTreeService {
                             snapTrackRepository.save(master);
                         }
 
-                        JSONObject leaf = new JSONObject();
-                        JSONArray arrayLeaf = new JSONArray();
-                        leaf.put("name", "Fake RTO");
-                        leaf.put("parent", "Call/No");
-                        leaf.put("color", "red");
-                        arrayLeaf.put(leaf);
-                        child2No.put("children", arrayLeaf);
-                        childNo.put("children", arrayChild1);
-                        SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
-                        master.setDtReason(Decision.FAKE.name());
-                        snapTrackRepository.save(master);
+//                        JSONObject leaf = new JSONObject();
+//                        JSONArray arrayLeaf = new JSONArray();
+//                        leaf.put("name", "Fake RTO");
+//                        leaf.put("parent", "Call/No");
+//                        leaf.put("color", "red");
+//                        arrayLeaf.put(leaf);
+//                        child2No.put("children", arrayLeaf);
+//                        childNo.put("children", arrayChild1);
+//                        SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
+//                        master.setDtReason(Decision.FAKE.name());
+//                        snapTrackRepository.save(master);
                     } else {
                         JSONObject child2Yes = new JSONObject();
                         JSONArray arrayChild2 = new JSONArray();

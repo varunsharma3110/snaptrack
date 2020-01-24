@@ -26,7 +26,11 @@
 	  stroke: #ccc;
 	  stroke-width: 2px;
 	}
+	#myModal {
+	    overflow-x: scroll;
+	}
     </style>
+
 
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -91,7 +95,7 @@
 <p id="pieChart"></p>
 
 <div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog" style="width:1250px;">
+  <div class="modal-dialog" style="width:1500px;">
 
     <!-- Modal content-->
     <div class="modal-content" >
@@ -250,8 +254,8 @@ $('#fetchAllRecords').click(function() {
     }
     function callTree(treeString) {
     $('#modalInnerText').empty();
-        var margin = {top: 20, right: 220, bottom: 20, left: 220},
-        	width = 960 - margin.right - margin.left,
+        var margin = {top: 20, right: 100, bottom: 20, left: 100},
+        	width = 1500 - margin.right - margin.left,
         	height = 500 - margin.top - margin.bottom;
 
         var i = 0;
@@ -293,7 +297,7 @@ $('#fetchAllRecords').click(function() {
             		  return "translate(" + d.y + "," + d.x + ")"; });
 
               nodeEnter.append("circle")
-            	  .attr("r", 20)
+            	  .attr("r", 15)
             	  .style("fill", function(d) { return d.color; });
 
               nodeEnter.append("text")
