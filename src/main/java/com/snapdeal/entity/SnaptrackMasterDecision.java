@@ -1,8 +1,5 @@
 package com.snapdeal.entity;
 
-import com.snapdeal.enums.RTOType;
-import com.sun.org.apache.xpath.internal.operations.Bool;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;

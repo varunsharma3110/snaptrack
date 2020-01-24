@@ -5,13 +5,11 @@ import com.snapdeal.sro.GeoPointSRO;
 import com.snapdeal.util.HTTPUtility;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.annotation.PostConstruct;
 
 @Service
 public class GeoLocationService {
-
 
     HTTPUtility httpUtility;
 
@@ -23,7 +21,8 @@ public class GeoLocationService {
     public JSONObject getGeoLocation(AddressSRO addressSRO) {
         JSONObject jsonObject = new JSONObject();
         try {
-            jsonObject = httpUtility.makeGetRequest(addressSRO.getStringAddress());
+            String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + addressSRO.getStringAddress();
+            jsonObject = new JSONObject(httpUtility.getRequest(url));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -43,8 +42,7 @@ public class GeoLocationService {
 
         double a= Math.sin(distanceLat/2) * Math.sin(distanceLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2))* Math.sin(distanceLon/2) * Math.sin(distanceLon/2);
         double c = 2* Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        double d = R*c;
-        return d;
+        return R*c;
 
     }
 

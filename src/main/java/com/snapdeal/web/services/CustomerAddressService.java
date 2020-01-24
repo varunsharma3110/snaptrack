@@ -8,7 +8,6 @@ import com.snapdeal.util.HTTPUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -62,10 +61,11 @@ public class CustomerAddressService {
 
     }
 
-//    public static  void main(String args[]){
-//        List<String> referenceCodes = new ArrayList<String>();
-//        referenceCodes.add("SLP2702936939");
-//        getCustomerAddress(referenceCodes);
-//    }
+    public AddressService getAddressService() {
+        return addressService;
+    }
 
+    public ISnapTrackRepository getSnapTrackRepository() {
+        return snapTrackRepository;
+    }
 }

@@ -266,8 +266,8 @@ $('#fetchAllRecords').click(function() {
             		  return "translate(" + d.y + "," + d.x + ")"; });
 
               nodeEnter.append("circle")
-            	  .attr("r", 15)
-            	  .style("fill", "#fff");
+            	  .attr("r", 40)
+            	  .style("fill", function(d) { return d.color; });
 
               nodeEnter.append("text")
             	  .attr("x", function(d) {
