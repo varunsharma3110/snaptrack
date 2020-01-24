@@ -22,15 +22,15 @@ public class ProbabilityCalculatorService {
         int callDurationInSeconds = Integer.parseInt(snapTrackMaster.getCallDuration().split(":")[1]);
 
         if (callDurationInSeconds > 20) {
-            percentage += 25;
+            percentage += 10;
         }
 
         if (snapTrackMaster.getCustomerRtoScore() <= 0.5) {
             percentage += 50;
         }
 
-        if (snapTrackMaster.getCustomerCancellationTickets() < 15) {
-            percentage += 25;
+        if (snapTrackMaster.getCustomerCancellationTickets() < 10) {
+            percentage += 15;
         }
 
         return percentage;
