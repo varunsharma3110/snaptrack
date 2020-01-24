@@ -78,6 +78,9 @@ public class AddressService {
 
     public void feedDistanceBetweenCustomerAndCourierLocation(List<SnapTrackMaster> unprocessedOrders) {
 
+        if(unprocessedOrders ==null || unprocessedOrders.size() ==0){
+            return;
+        }
         AddressSRO customerAddress = getAddressByOrderId(unprocessedOrders.get(0).getOrderId());
 
         GeoPointSRO customerGeoLocation = getGeoLocationFromAddress(customerAddress);
@@ -95,11 +98,14 @@ public class AddressService {
             longGeoAngle.setAngle(unprocessedOrder.getFeLong());
 
             courierGeoLocation.setLattitude(latGeoAngle);
-            courierGeoLocation.setLongitude(latGeoAngle);
+            courierGeoLocation.setLongitude(longGeoAngle);
 
             double diff = geoLocationService.compareTwoPoints(courierGeoLocation, customerGeoLocation);
 
             unprocessedOrder.setDistance(diff);
+            unprocessedOrder.setCustLat(customerGeoLocation.getLattitude().getAngle());
+            unprocessedOrder.setCustLong(customerGeoLocation.getLongitude().getAngle());
+            unprocessedOrder.setProcessed(true);
 
             snapTrackRepository.save(unprocessedOrder);
 

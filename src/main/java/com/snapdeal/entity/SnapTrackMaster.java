@@ -176,4 +176,12 @@ public class SnapTrackMaster implements Serializable {
                 ", distance=" + distance +
                 '}';
     }
+
+    public void setCustLat(Double custLat) {
+        this.custLat = custLat;
+    }
+
+    public void setProcessed(Boolean processed) {
+        this.processed = processed;
+    }
 }
