@@ -23,4 +23,7 @@ public interface ISnapTrackRepository extends JpaRepository<SnapTrackMaster,Inte
     @Query("Select orderId from SnapTrackMaster")
     List<String> findAllOrderIds();
 
+    @Query("Select sm from SnapTrackMaster sm where sm.processed=?1 and sm.dtReason=?2")
+    List<SnapTrackMaster> findAllUnprocessedYellowZoneOrderIds(Boolean processed, String dtReason);
+
 }

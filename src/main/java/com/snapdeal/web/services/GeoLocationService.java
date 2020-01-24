@@ -22,7 +22,7 @@ public class GeoLocationService {
         JSONObject jsonObject = new JSONObject();
         try {
             String url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + addressSRO.getStringAddress();
-            jsonObject = new JSONObject(httpUtility.getRequest(url));
+//            jsonObject = new JSONObject(httpUtility.getRequest(url));
         } catch (Exception e) {
             e.printStackTrace();
         }

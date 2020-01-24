@@ -24,10 +24,11 @@ public class SnapTrackMaster implements Serializable {
     private Date created;
     private String rtoReason;
     private String dtReason;
-    private Double distance; // distance between courier and customer lat log
-    private Float customerRtoScore;
-    private Integer customerCancellationTickets;
-    private Integer probabilityRecommendation;
+    private double distance; // distance between courier and customer lat log
+    private float customerRtoScore;
+    private int customerCancellationTickets;
+    private int probabilityRecommendation;
+    private Boolean processed;
 
     public float getCustomerRtoScore() {
         return customerRtoScore;

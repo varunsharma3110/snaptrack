@@ -3,10 +3,12 @@ package com.snapdeal.web.services;
 import com.snapdeal.entity.SnapTrackMaster;
 import com.snapdeal.repository.ISnapTrackRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
 
+@Service
 public class ProbabilityCalculatorService {
 
     @Autowired
@@ -36,7 +38,7 @@ public class ProbabilityCalculatorService {
 
     }
 
-    private void getProbabilityPercentageforYellowZoneTickets(List<SnapTrackMaster> snapTrackMasterList) {
+    public void feedProbabilityPercentageforYellowZoneTickets(List<SnapTrackMaster> snapTrackMasterList) {
         for (SnapTrackMaster snapTrackMaster : snapTrackMasterList) {
             snapTrackMaster.setProbabilityRecommendation(getProbabilityPercentage(snapTrackMaster));
             snapTrackRepository.save(snapTrackMaster);

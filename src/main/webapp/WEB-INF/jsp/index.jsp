@@ -84,6 +84,8 @@
 <center>
 <table class="table" id="tab_logic">
   </table>
+<table class="table" id="tab_logic_yellow">
+  </table>
 </center>
 <div id="chart1"></div>
 <p id="pieChart"></p>
@@ -114,6 +116,7 @@
 $('#fetchReport').click(function() {
     $('#chart1').empty();
     $('#tab_logic').empty();
+    $('#tab_logic_yellow').empty();
     plot4 = $.jqplot('chart1', [[[42,'2020-01-12 4:00PM'], [40,'2020-01-13 4:00PM'], [45,'2020-01-14 4:00PM'], [44,'2020-01-15 4:00PM'],[42,'2020-01-16 4:00PM'],[39,'2020-01-17 4:00PM']], [[30,'2020-01-12 4:00PM'], [32,'2020-01-13 4:00PM'],[36,'2020-01-14 4:00PM'],[39,'2020-01-15 4:00PM'],[30,'2020-01-16 4:00PM'],[36,'2020-01-17 4:00PM']], [[28,'2020-01-12 4:00PM'], [28,'2020-01-13 4:00PM'], [19,'2020-01-14 4:00PM'], [17,'2020-01-15 4:00PM'],[28,'2020-01-16 4:00PM'],[25,'2020-01-17 4:00PM']]], {
                 stackSeries: true,
                 captureRightClick: true,
@@ -170,20 +173,60 @@ $('#fetchAllRecords').click(function() {
 
     });
 
+    $('#filterYellow').click(function() {
+
+            $.ajax({
+    				type : "GET",
+    				dataType : 'json',
+    				async : false,
+    				data:{
+                         "decision":"YELLOW_ZONE"
+                     },
+    				url : "getFromData",
+    				success : function(data) {
+    					t = data.results;
+    					console.log(t);
+    					fetchAllRecordsYellow(t)
+
+    				},
+    				error : function() {
+    					alert("error");
+    				}
+
+    			});
+
+
+        });
+
+
+
     function fetchAllRecords(t) {
     $('#chart1').empty();
     $('#tab_logic').empty();
+    $('#tab_logic_yellow').empty();
     var html="";
-    html+="<thead> <tr>  <th scope='col'>Order Id</th> <th scope='col'>Latitude</th> <th scope='col'>Longitude</th> <th scope='col'>OTP</th> <th scope='col'>Caller Status</th> <th scope='col'>Called Status</th> <th scope='col'>Call Unit</th> <th scope='col'>Date</th><th scope='col'>RTO Reason</th></tr> </thead> <tbody> ";
-    for (var i = 0; i < t.length ; i++) {
-      html+="<tr> <td onclick='tableFunction(this)' data-toggle='modal' data-target='#myModal'> <p id='trow"+i+"'>" + t[i].orderId  + "</p></td> <td> <p> " + t[i].latitude +"</p></td> <td> <p>  " + t[i].longitude + "</p></td> <td> <p> " +t[i].otp +"</p></td> <td> <p>  " + t[i].callerStatus + "</p></td> <td>  <p> " +  t[i].calledStatus + " </p></td> <td> <p> "+  t[i].callDuration  +" </p></td> <td> <p> "+  t[i].created  +" </p></td><td> <p> "+  t[i].rtoReason  +" </p></td></tr>"
-    }
+    html+="<thead> <tr>  <th scope='col'>Order Id</th> <th scope='col'>Customer Latitude/Longitude</th> <th scope='col'>Courier Latitude/Longitude</th> <th scope='col'>OTP</th> <th scope='col'>Call Status</th>  <th scope='col'>Call Duration</th> <th scope='col'>Date</th><th scope='col'>RTO Reason</th> <th scope='col'>DT Reason</th><th scope='col'>Distance</th></tr> </thead> <tbody> ";
+                for (var i = 0; i < t.length ; i++) {
+                  html+="<tr> <td onclick='tableFunction(this)' data-toggle='modal' data-target='#myModal'> <p id='trow"+i+"'>" + t[i].orderId  + "</p></td> <td> <p> " + t[i].custLat+","+t[i].custLong +"</p></td> <td> <p>  " + t[i].feLat +","+t[i].feLong + "</p></td> <td> <p> " +t[i].otp +"</p></td> <td> <p>  " + t[i].callStatus + "</p></td>  <td> <p> "+  t[i].callDuration  +" </p></td> <td> <p> "+  t[i].created  +" </p></td><td> <p> "+  t[i].rtoReason  +" </p></td><td> <p> "+  t[i].dtReason  +" </p></td> <td> <p> "+  t[i].distance  +" </p></td></tr>"
+                }
     html+="</tbody>";
     $('#tab_logic').append(html);
 
     }
-    function tableFunction(i){
+    function fetchAllRecordsYellow(t) {
+        $('#chart1').empty();
+            $('#tab_logic').empty();
+            $('#tab_logic_yellow').empty();
+            var html="";
+            html+="<thead> <tr>  <th scope='col'>Order Id</th> <th scope='col'>Customer Latitude/Longitude</th> <th scope='col'>Courier Latitude/Longitude</th> <th scope='col'>OTP</th> <th scope='col'>Call Status</th>  <th scope='col'>Call Duration</th> <th scope='col'>Date</th><th scope='col'>RTO Reason</th> <th scope='col'>DT Reason</th><th scope='col'>Distance</th><th scope='col'>Customer RTO Score</th><th scope='col'>Customer Can Tickets</th><th scope='col'>Probability Fake</th></tr> </thead> <tbody> ";
+                for (var i = 0; i < t.length ; i++) {
+                  html+="<tr> <td onclick='tableFunction(this)' data-toggle='modal' data-target='#myModal'> <p id='trow"+i+"'>" + t[i].orderId  + "</p></td> <td> <p> " + t[i].custLat+","+t[i].custLong +"</p></td> <td> <p>  " + t[i].feLat +","+t[i].feLong + "</p></td> <td> <p> " +t[i].otp +"</p></td> <td> <p>  " + t[i].callStatus + "</p></td>  <td> <p> "+  t[i].callDuration  +" </p></td> <td> <p> "+  t[i].created  +" </p></td><td> <p> "+  t[i].rtoReason  +" </p></td><td> <p> "+  t[i].dtReason  +" </p></td> <td> <p> "+  t[i].distance  +" </p></td> <td> <p> "+  t[i].customerRtoScore  +" </p></td> <td> <p> "+  t[i].customerCancellationTickets  +" </p></td> <td> <p> "+  t[i].probabilityRecommendation  +" </p></td></tr>"
+                }
+            html+="</tbody>";
+            $('#tab_logic_yellow').append(html);
 
+      }
+    function tableFunction(i){
     var txt = i.innerText;
      $.ajax({
     				type : "GET",
@@ -207,7 +250,7 @@ $('#fetchAllRecords').click(function() {
     }
     function callTree(treeString) {
     $('#modalInnerText').empty();
-        var margin = {top: 20, right: 120, bottom: 20, left: 120},
+        var margin = {top: 20, right: 220, bottom: 20, left: 220},
         	width = 960 - margin.right - margin.left,
         	height = 500 - margin.top - margin.bottom;
 
@@ -273,45 +316,9 @@ $('#fetchAllRecords').click(function() {
 
     }
 
-    function update(source) {
-
-      // Compute the new tree layout.
 
 
-    }
 
-    $('#filterYellow').click(function() {
-
-      var params ={
-           decision: "yellowZone"
-      }
-
-            $.ajax({
-    				type : "GET",
-    				dataType : 'json',
-    				async : false,
-    				data:{
-    				"decision":"YELLOW"
-    				},
-    				url : "getFromData",
-
-    				success : function(data,params) {
-    					t = data.results;
-    					console.log(t);
-    					fetchAllRecords(t)
-    					for( var i=0 ;i <t.length ;i++) {
-    					console.log(t[i].orderId);
-    					}
-
-    				},
-    				error : function() {
-    					alert("error");
-    				}
-
-    			});
-
-
-        });
 
 </script>
 </html>
