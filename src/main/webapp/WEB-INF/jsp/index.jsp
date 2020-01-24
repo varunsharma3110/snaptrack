@@ -70,6 +70,7 @@
 <center>
 <button type="button" class="btn btn-default" id="fetchAllRecords">Fetch All Records </button>
 <button type="button" class="btn btn-default" id="fetchReport">Fetch Reports </button>
+<button type="button" class="btn btn-default" id="filterYellow">Filter Yellow Zone</button>
 </center>
 <br>
 <br>
@@ -260,6 +261,39 @@ $('#fetchAllRecords').click(function() {
 
 
     }
+
+    $('#filterYellow').click(function() {
+
+      var params ={
+           decision: "yellowZone"
+      }
+
+            $.ajax({
+    				type : "GET",
+    				dataType : 'json',
+    				async : false,
+    				data:{
+    				"decision":"YELLOW"
+    				},
+    				url : "getFromData",
+
+    				success : function(data,params) {
+    					t = data.results;
+    					console.log(t);
+    					fetchAllRecords(t)
+    					for( var i=0 ;i <t.length ;i++) {
+    					console.log(t[i].orderId);
+    					}
+
+    				},
+    				error : function() {
+    					alert("error");
+    				}
+
+    			});
+
+
+        });
 
 </script>
 </html>
