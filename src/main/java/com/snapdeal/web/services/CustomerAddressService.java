@@ -61,4 +61,11 @@ public class CustomerAddressService {
 
     }
 
+    public AddressService getAddressService() {
+        return addressService;
+    }
+
+    public ISnapTrackRepository getSnapTrackRepository() {
+        return snapTrackRepository;
+    }
 }

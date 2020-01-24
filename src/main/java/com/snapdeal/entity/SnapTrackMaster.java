@@ -1,4 +1,5 @@
 package com.snapdeal.entity;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -8,12 +9,14 @@ import java.util.Date;
 public class SnapTrackMaster implements Serializable {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String orderId;
     private double custLat;
     private double custLong;
     private String otp;
+
+
     private String callStatus;
     private double feLat;
     private double feLong;
@@ -22,6 +25,29 @@ public class SnapTrackMaster implements Serializable {
     private String rtoReason;
     private String dtReason;
     private double distance; // distance between courier and customer lat log
+    private float customerRtoScore;
+    private int customerCancellationTickets;
+    private int probabilityRecommendation;
+
+    public float getCustomerRtoScore() {
+        return customerRtoScore;
+    }
+
+    public int getCustomerCancellationTickets() {
+        return customerCancellationTickets;
+    }
+
+    public int getProbabilityRecommendation() {
+        return probabilityRecommendation;
+    }
+
+    public void setCustomerRtoScore(float customerRtoScore) {
+        this.customerRtoScore = customerRtoScore;
+    }
+
+    public void setProbabilityRecommendation(int probabilityRecommendation) {
+        this.probabilityRecommendation = probabilityRecommendation;
+    }
 
     public Integer getId() {
         return id;
@@ -38,7 +64,6 @@ public class SnapTrackMaster implements Serializable {
     public void setOrderId(String orderId) {
         this.orderId = orderId;
     }
-
 
 
     public String getRtoReason() {
@@ -65,7 +90,6 @@ public class SnapTrackMaster implements Serializable {
     public void setCallStatus(String callStatus) {
         this.callStatus = callStatus;
     }
-
 
 
     public double getDistance() {
