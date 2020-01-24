@@ -62,6 +62,14 @@ public class CustomerAddressService {
 
     }
 
+    public AddressService getAddressService() {
+        return addressService;
+    }
+
+    public ISnapTrackRepository getSnapTrackRepository() {
+        return snapTrackRepository;
+    }
+
 //    public static  void main(String args[]){
 //        List<String> referenceCodes = new ArrayList<String>();
 //        referenceCodes.add("SLP2702936939");
