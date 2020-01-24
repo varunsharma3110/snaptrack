@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -84,12 +85,16 @@ public class SnapTrackController {
     }
 
     @GetMapping ("getFromData")
-    public SnapTrackMasterResponse getAll(){
+    public SnapTrackMasterResponse getAll(@RequestParam(value = "decison", required=false) String decision){
         SnapTrackMasterResponse response = new SnapTrackMasterResponse();
-        response.setResults( repository.findAll());
+        if(!StringUtils.isEmpty(decision)){
+            response.setResults(repository.findAllByDecison(decision));
+        }else {
+            response.setResults(repository.findAll());
+        }
         response.setSuccess(true);
         response.setMessage("Success");
-        return  response;
+        return response;
     }
 
     private double deg2rad(double degree){

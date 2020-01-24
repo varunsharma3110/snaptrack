@@ -1,5 +1,6 @@
 package com.snapdeal.entity;
 
+import com.snapdeal.enums.RTOType;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import javax.persistence.*;
@@ -85,6 +86,7 @@ public class SnaptrackMasterDecision implements Serializable {
                 ", call_validated=" + call_validated +
                 ", loc_validated=" + loc_validated +
                 ", created=" + created +
+                ", rtoReason='" + rtoReason + '\'' +
                 '}';
     }
 }

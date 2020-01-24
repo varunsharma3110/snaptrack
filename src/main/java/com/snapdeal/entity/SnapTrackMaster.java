@@ -19,6 +19,7 @@ public class SnapTrackMaster implements Serializable {
     private String callDuration;
     private Date created;
     private String rtoReason;
+    private String dtReason;
 
     public Integer getId() {
         return id;
@@ -100,6 +101,14 @@ public class SnapTrackMaster implements Serializable {
         this.created = created;
     }
 
+    public String getDtReason() {
+        return dtReason;
+    }
+
+    public void setDtReason(String dtReason) {
+        this.dtReason = dtReason;
+    }
+
     @Override
     public String toString() {
         return "SnapTrackMaster{" +
@@ -113,6 +122,7 @@ public class SnapTrackMaster implements Serializable {
                 ", callDuration='" + callDuration + '\'' +
                 ", created=" + created +
                 ", rtoReason='" + rtoReason + '\'' +
+                ", dtReason='" + dtReason + '\'' +
                 '}';
     }
 }

@@ -16,8 +16,6 @@ import java.util.List;
 public interface ISnapTrackMasterDecisonRepository extends JpaRepository<SnaptrackMasterDecision,Integer> {
 
 
-
-
      @Query(" Select smd from SnaptrackMasterDecision smd where smd.orderId =?1")
      List<SnaptrackMasterDecision> findDecisonTreeByOrderId(String orderId);
 
