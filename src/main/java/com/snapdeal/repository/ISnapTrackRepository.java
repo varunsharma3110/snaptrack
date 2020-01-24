@@ -17,5 +17,10 @@ public interface ISnapTrackRepository extends JpaRepository<SnapTrackMaster,Inte
     @Query(" Select sm from SnapTrackMaster sm where sm.dtReason =?1")
     List<SnapTrackMaster> findAllByDecison(String decision);
 
+    @Query(" Select sm from SnapTrackMaster sm where sm.orderId =?1")
+    List<SnapTrackMaster> findOneByOrderId(String orderId);
+
+    @Query("Select orderId from SnapTrackMaster")
+    List<String> findAllOrderIds();
 
 }

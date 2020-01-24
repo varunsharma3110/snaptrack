@@ -1,13 +1,20 @@
 package com.snapdeal.web.services;
 
+import com.snapdeal.entity.SnapTrackMaster;
 import com.snapdeal.entity.SnaptrackMasterDecision;
+import com.snapdeal.enums.Decision;
 import com.snapdeal.enums.RTOType;
+import com.snapdeal.repository.ISnapTrackRepository;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class DecisionTreeService {
+
+    @Autowired
+    ISnapTrackRepository snapTrackRepository;
 
     public String createDecisionJson(RTOType type, SnaptrackMasterDecision decision) {
         JSONObject object = new JSONObject();
@@ -15,8 +22,8 @@ public class DecisionTreeService {
             case CR:
                 object.put("name", "OTPAvailable");
                 object.put("parent", "null");
+                JSONObject child = new JSONObject();
                 if (decision.getOtp_validated()) {
-                    JSONObject child = new JSONObject();
                     child.put("name", "Yes->Not Fake");
                     child.put("parent", "OTPAvailable");
                     JSONArray array = new JSONArray();
@@ -24,7 +31,6 @@ public class DecisionTreeService {
                     object.put("children", array);
                 }
                 else {
-                    JSONObject child = new JSONObject();
                     child.put("name", "No->getLocation");
                     child.put("parent", "OTPAvailable");
                     JSONArray array = new JSONArray();
@@ -48,6 +54,9 @@ public class DecisionTreeService {
                         if (decision.getCall_validated()) {
                             child = new JSONObject();
                             child.put("name", "Yes->Recommended for QC");
+                            SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
+                            master.setDtReason(Decision.YELLOW.name());
+                            snapTrackRepository.saveAndFlush(master);
                             child.put("parent", "No->callStatus");
                             object.getJSONArray("children").getJSONObject(0).getJSONArray("children").getJSONObject(0).put("children", child);
                         }
@@ -55,6 +64,9 @@ public class DecisionTreeService {
                             child = new JSONObject();
                             child.put("name", "No->Fake");
                             child.put("parent", "No->callStatus");
+                            SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
+                            master.setDtReason(Decision.FAKE.name());
+                            snapTrackRepository.saveAndFlush(master);
                             object.getJSONArray("children").getJSONObject(0).getJSONArray("children").getJSONObject(0).put("children", child);
                         }
                     }
@@ -64,7 +76,7 @@ public class DecisionTreeService {
                 object.put("name", "getLocation");
                 object.put("parent", "null");
                 if (decision.getLoc_validated()) {
-                    JSONObject child = new JSONObject();
+                    child = new JSONObject();
                     child.put("name", "Location/Yes");
                     child.put("parent", "getLocation");
                     object.put("children", child);
@@ -74,7 +86,7 @@ public class DecisionTreeService {
                     child.put("children", leaf);
                 }
                 else {
-                    JSONObject child = new JSONObject();
+                    child = new JSONObject();
                     child.put("name", "Location/No");
                     child.put("parent", "getLocation");
                     object.put("children", child);
