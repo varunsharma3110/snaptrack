@@ -544,8 +544,11 @@ public class DecisionTreeService {
     public void updateMasterDecisionTable() {
         List<SnapTrackMaster> masterList = snapTrackRepository.findAll();
         for (SnapTrackMaster master : masterList) {
-            SnaptrackMasterDecision decision = masterDecisonRepository.findDecisonTreeByOrderId(master.getOrderId()).get(0);
-            if (decision == null) {
+            List<SnaptrackMasterDecision> decisionList = masterDecisonRepository.findDecisonTreeByOrderId(master.getOrderId());
+            SnaptrackMasterDecision decision;
+            if (decisionList != null && decisionList.size() > 0)
+                decision = decisionList.get(0);
+            else {
                 decision = new SnaptrackMasterDecision();
                 decision.setCreated(new Date());
             }
