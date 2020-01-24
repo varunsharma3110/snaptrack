@@ -103,6 +103,7 @@ public class SnapTrackController {
         List<SnaptrackMasterDecision> decisions = decisonRepository.findDecisonTreeByOrderId(orderId);
         SnaptrackMasterDecision decision = decisonRepository.findDecisonTreeByOrderId(orderId).get(0);
         String json = decisionTreeService.createDecisionJson(RTOType.CR, decision);
+        System.out.println(json);
         response.setJson(json);
         response.setSuccess(true);
         response.setMessage("Success");
