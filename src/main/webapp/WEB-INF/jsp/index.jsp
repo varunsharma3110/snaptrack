@@ -53,6 +53,14 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqPlot/1.0.9/jquery.jqplot.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqPlot/1.0.9/plugins/jqplot.pieRenderer.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqPlot/1.0.9/plugins/jqplot.donutRenderer.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqPlot/1.0.9/plugins/jqplot.barRenderer.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqPlot/1.0.9/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqPlot/1.0.9/plugins/jqplot.pointLabels.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqPlot/1.0.9/plugins/jqplot.dateAxisRenderer.min.js"></script>
+
+
+
+
 <link rel="stylesheet"
 	href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	<link rel="stylesheet"
@@ -105,25 +113,36 @@
 <script type="text/javascript">
 
 $('#fetchReport').click(function() {
-$('#chart1').empty();
+    $('#chart1').empty();
     $('#tab_logic').empty();
-       var data = [
-           ['Fake', 42],['NoT Fake', 20], ['Yellow', 38]
-         ];
-         var plot1 = jQuery.jqplot ('chart1', [data],
-           {
-             seriesDefaults: {
-               // Make this a pie chart.
-               renderer: jQuery.jqplot.PieRenderer,
-               rendererOptions: {
-                 // Put data labels on the pie slices.
-                 // By default, labels show the percentage of the slice.
-                 showDataLabels: true
-               }
-             },
-             legend: { show:true, location: 'e' }
-           }
-         );
+    plot4 = $.jqplot('chart1', [[[42,'2020-01-12 4:00PM'], [40,'2020-01-13 4:00PM'], [45,'2020-01-14 4:00PM'], [44,'2020-01-15 4:00PM'],[42,'2020-01-16 4:00PM'],[39,'2020-01-17 4:00PM']], [[30,'2020-01-12 4:00PM'], [32,'2020-01-13 4:00PM'],[36,'2020-01-14 4:00PM'],[39,'2020-01-15 4:00PM'],[30,'2020-01-16 4:00PM'],[36,'2020-01-17 4:00PM']], [[28,'2020-01-12 4:00PM'], [28,'2020-01-13 4:00PM'], [19,'2020-01-14 4:00PM'], [17,'2020-01-15 4:00PM'],[28,'2020-01-16 4:00PM'],[25,'2020-01-17 4:00PM']]], {
+                stackSeries: true,
+                captureRightClick: true,
+                seriesDefaults:{
+                    renderer:$.jqplot.BarRenderer,
+                    shadowAngle: 135,
+                    rendererOptions: {
+                        barDirection: 'horizontal',
+                        highlightMouseDown: true
+                    },
+                    pointLabels: {show: true, formatString: '%d'}
+                },
+                series: [
+                  { label: 'Fake'},
+                  { label: 'Not Fake' },
+                  { label: 'Yelllow Zone' }
+                ],
+                legend: {
+                    show: true,
+                    location: 'e',
+                    placement: 'inside'
+                },
+                axes: {
+                    yaxis: {
+                        renderer: $.jqplot.DateAxisRenderer
+                    }
+                }
+            });
 
     });
 

@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -66,30 +67,18 @@ public class SnapTrackController {
         return sro;
     }
 
-    @PostMapping("compareTwoPoints")
-    public double compareTwoPoints(GeoPointSRO point1, GeoPointSRO point2) {
-        int R= 6371;
-        double lat1 =point1.getLattitude().getAngle();
-       double lat2 =point2.getLattitude().getAngle();
-       double lon1 =point1.getLongitude().getAngle();
-       double lon2 =point2.getLongitude().getAngle();
 
-      double distanceLat = deg2rad(lat2-lat1);
-      double distanceLon = deg2rad(lon2-lon1);
-
-     double a= Math.sin(distanceLat/2) * Math.sin(distanceLat/2) + Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2))* Math.sin(distanceLon/2) * Math.sin(distanceLon/2);
-     double c = 2* Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-     double d = R*c;
-     return d;
-
-    }
-
+<<<<<<< HEAD
     @GetMapping ("getFromData")
     public SnapTrackMasterResponse getAll(@RequestParam(value = "decision", required=false) String decision){
+=======
+    @GetMapping("getFromData")
+    public SnapTrackMasterResponse getAll(@RequestParam(value = "decison", required = false) String decision) {
+>>>>>>> 53efbe0f94d019e20cb174bfab80008fff5e0086
         SnapTrackMasterResponse response = new SnapTrackMasterResponse();
-        if(!StringUtils.isEmpty(decision)){
+        if (!StringUtils.isEmpty(decision)) {
             response.setResults(repository.findAllByDecison(decision));
-        }else {
+        } else {
             response.setResults(repository.findAll());
         }
         response.setSuccess(true);
@@ -97,13 +86,9 @@ public class SnapTrackController {
         return response;
     }
 
-    private double deg2rad(double degree){
-         return degree * (Math.PI/180);
-    }
 
-
-    @GetMapping ("getDecisonTreeFromOrderId")
-    public SnapTrackMasterDecisonResponse getDecison(@RequestParam String orderId){
+    @GetMapping("getDecisonTreeFromOrderId")
+    public SnapTrackMasterDecisonResponse getDecison(@RequestParam String orderId) {
         SnapTrackMasterDecisonResponse response = new SnapTrackMasterDecisonResponse();
         List<SnaptrackMasterDecision> decisions = decisonRepository.findDecisonTreeByOrderId(orderId);
         SnaptrackMasterDecision decision = decisonRepository.findDecisonTreeByOrderId(orderId).get(0);
@@ -111,6 +96,6 @@ public class SnapTrackController {
         response.setJson(json);
         response.setSuccess(true);
         response.setMessage("Success");
-        return  response;
+        return response;
     }
 }

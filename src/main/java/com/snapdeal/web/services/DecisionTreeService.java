@@ -4,7 +4,6 @@ import com.snapdeal.entity.SnapTrackMaster;
 import com.snapdeal.entity.SnaptrackMasterDecision;
 import com.snapdeal.enums.Decision;
 import com.snapdeal.enums.RTOType;
-import com.snapdeal.repository.ISnapTrackMasterDecisonRepository;
 import com.snapdeal.repository.ISnapTrackRepository;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -23,8 +22,8 @@ public class DecisionTreeService {
             case CR:
                 object.put("name", "OTPAvailable");
                 object.put("parent", "null");
+                JSONObject child = new JSONObject();
                 if (decision.getOtp_validated()) {
-                    JSONObject child = new JSONObject();
                     child.put("name", "Yes->Not Fake");
                     child.put("parent", "OTPAvailable");
                     JSONArray array = new JSONArray();
@@ -32,7 +31,6 @@ public class DecisionTreeService {
                     object.put("children", array);
                 }
                 else {
-                    JSONObject child = new JSONObject();
                     child.put("name", "No->getLocation");
                     child.put("parent", "OTPAvailable");
                     JSONArray array = new JSONArray();
@@ -78,7 +76,7 @@ public class DecisionTreeService {
                 object.put("name", "getLocation");
                 object.put("parent", "null");
                 if (decision.getLoc_validated()) {
-                    JSONObject child = new JSONObject();
+                    child = new JSONObject();
                     child.put("name", "Location/Yes");
                     child.put("parent", "getLocation");
                     object.put("children", child);
@@ -88,7 +86,7 @@ public class DecisionTreeService {
                     child.put("children", leaf);
                 }
                 else {
-                    JSONObject child = new JSONObject();
+                    child = new JSONObject();
                     child.put("name", "Location/No");
                     child.put("parent", "getLocation");
                     object.put("children", child);

@@ -1,4 +1,4 @@
-package com.snapdeal.web.controller;
+package com.snapdeal.snaptrack;
 
 import com.snapdeal.sro.GeoAngleSRO;
 import com.snapdeal.sro.GeoPointSRO;
