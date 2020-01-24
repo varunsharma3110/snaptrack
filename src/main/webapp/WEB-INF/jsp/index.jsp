@@ -48,9 +48,20 @@
 	src="http://cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/a549aa8780dbda16f6cff545aeabc3d71073911e/src/js/bootstrap-datetimepicker.js"></script>
 	<link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqPlot/1.0.9/jquery.jqplot.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqPlot/1.0.9/plugins/jqplot.pieRenderer.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqPlot/1.0.9/plugins/jqplot.donutRenderer.min.js"></script>
+<link rel="stylesheet"
+	href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<link rel="stylesheet"
+    	href="https://cdnjs.cloudflare.com/ajax/libs/jqPlot/1.0.9/jquery.jqplot.min.css">
+
+
+
+
+
 
 </head>
 <body>
@@ -58,6 +69,7 @@
 <br>
 <center>
 <button type="button" class="btn btn-default" id="fetchAllRecords">Fetch All Records </button>
+<button type="button" class="btn btn-default" id="fetchReport">Fetch Reports </button>
 </center>
 <br>
 <br>
@@ -65,6 +77,8 @@
 <table class="table" id="tab_logic">
   </table>
 </center>
+<div id="chart1"></div>
+<p id="pieChart"></p>
 
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -89,7 +103,31 @@
 
 <script type="text/javascript">
 
+$('#fetchReport').click(function() {
+$('#chart1').empty();
+    $('#tab_logic').empty();
+       var data = [
+           ['Fake', 42],['NoT Fake', 20], ['Yellow', 38]
+         ];
+         var plot1 = jQuery.jqplot ('chart1', [data],
+           {
+             seriesDefaults: {
+               // Make this a pie chart.
+               renderer: jQuery.jqplot.PieRenderer,
+               rendererOptions: {
+                 // Put data labels on the pie slices.
+                 // By default, labels show the percentage of the slice.
+                 showDataLabels: true
+               }
+             },
+             legend: { show:true, location: 'e' }
+           }
+         );
+
+    });
+
 $('#fetchAllRecords').click(function() {
+
         $.ajax({
 				type : "GET",
 				dataType : 'json',
@@ -114,6 +152,7 @@ $('#fetchAllRecords').click(function() {
     });
 
     function fetchAllRecords(t) {
+    $('#chart1').empty();
     $('#tab_logic').empty();
     var html="";
     html+="<thead> <tr>  <th scope='col'>Order Id</th> <th scope='col'>Latitude</th> <th scope='col'>Longitude</th> <th scope='col'>OTP</th> <th scope='col'>Caller Status</th> <th scope='col'>Called Status</th> <th scope='col'>Call Unit</th> <th scope='col'>Date</th><th scope='col'>RTO Reason</th></tr> </thead> <tbody> ";
@@ -148,6 +187,7 @@ $('#fetchAllRecords').click(function() {
 
     }
     function callTree(treeString) {
+    $('#modalInnerText').empty();
         var margin = {top: 20, right: 120, bottom: 20, left: 120},
         	width = 960 - margin.right - margin.left,
         	height = 500 - margin.top - margin.bottom;
