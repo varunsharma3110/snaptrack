@@ -77,7 +77,7 @@
 <center>
 <button type="button" class="btn btn-default" id="fetchAllRecords">Fetch All Records </button>
 <button type="button" class="btn btn-default" id="fetchReport">Fetch Reports </button>
-<button type="button" class="btn btn-default" id="filterYellow">Filter Yellow Zone</button>
+<button type="button" class="btn btn-default" id="filterYellow">Yellow Zone Report</button>
 </center>
 <br>
 <br>
@@ -149,7 +149,6 @@ $('#fetchReport').click(function() {
     });
 
 $('#fetchAllRecords').click(function() {
-
         $.ajax({
 				type : "GET",
 				dataType : 'json',
