@@ -17,11 +17,11 @@ public class DPFetchService {
     @PostConstruct
     public void init() {
         httpUtility = new HTTPUtility();
-        getDataFromDP();
+//        getDataFromDP();
     }
 
     public void getDataFromDP() {
-        String listURL = "http://10.65.31.51/scheduled/37887/1/2020/01/24/03/?user.name=client&op=LISTSTATUS";
+        String listURL = "http://10.65.31.51/scheduled/38589/1/?user.name=client&op=LISTSTATUS";
         JSONObject dpResponse = new JSONObject(httpUtility.getRequest(listURL));
         List<String> partFiles = new ArrayList<>();
         JSONArray files = dpResponse.getJSONObject("FileStatuses").getJSONArray("FileStatus");
@@ -30,7 +30,7 @@ public class DPFetchService {
             partFiles.add(obj.getString("pathSuffix"));
         }
         for (String partFile : partFiles) {
-            String fileURL = "http://10.65.31.51/scheduled/37887/1/2020/01/24/03/" + partFile + "?user.name=client&op=OPEN";
+            String fileURL = "http://10.65.31.51/scheduled/38589/1/" + partFile + "?user.name=client&op=OPEN";
             String data = httpUtility.getRequest(fileURL);
             System.out.println(data);
         }

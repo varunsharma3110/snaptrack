@@ -251,7 +251,7 @@ $('#fetchAllRecords').click(function() {
 
               nodeEnter.append("circle")
             	  .attr("r", 40)
-            	  .style("fill", "#fff");
+            	  .style("fill", function(d) { return d.color; });
 
               nodeEnter.append("text")
             	  .attr("x", function(d) {

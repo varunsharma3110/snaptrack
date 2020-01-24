@@ -34,7 +34,7 @@ public class HTTPUtility {
             StringBuilder response = new StringBuilder();
 
             while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
+                response.append(inputLine).append('\n');
             }
             in.close();
 
