@@ -12,22 +12,22 @@ public class SnapTrackMaster implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String orderId;
-    private double custLat;
-    private double custLong;
+    private Double custLat;
+    private Double custLong;
     private String otp;
 
 
     private String callStatus;
-    private double feLat;
-    private double feLong;
+    private Double feLat;
+    private Double feLong;
     private String callDuration;
     private Date created;
     private String rtoReason;
     private String dtReason;
-    private double distance; // distance between courier and customer lat log
-    private float customerRtoScore;
-    private int customerCancellationTickets;
-    private int probabilityRecommendation;
+    private Double distance; // distance between courier and customer lat log
+    private Float customerRtoScore;
+    private Integer customerCancellationTickets;
+    private Integer probabilityRecommendation;
 
     public float getCustomerRtoScore() {
         return customerRtoScore;

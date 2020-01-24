@@ -250,12 +250,12 @@ $('#fetchAllRecords').click(function() {
             		  return "translate(" + d.y + "," + d.x + ")"; });
 
               nodeEnter.append("circle")
-            	  .attr("r", 40)
+            	  .attr("r", 20)
             	  .style("fill", function(d) { return d.color; });
 
               nodeEnter.append("text")
             	  .attr("x", function(d) {
-            		  return d.children || d._children ? -63 : 63; })
+            		  return d.children || d._children ? -20 : 30; })
             	  .attr("dy", "2.5em")
             	  .attr("text-anchor", function(d) {
             		  return d.children || d._children ? "end" : "start"; })

@@ -34,7 +34,7 @@ public class DecisionTreeService {
                     JSONObject childNo = new JSONObject();
                     childNo.put("name", "OTP/No");
                     childNo.put("parent", "getOTP");
-                    childNo.put("color", "black");
+//                    childNo.put("color", "black");
                     arrayChild.put(childNo);
                     object.put("children", arrayChild);
 
@@ -55,7 +55,7 @@ public class DecisionTreeService {
                     JSONObject childYes = new JSONObject();
                     childYes.put("name", "OTP/Yes");
                     childYes.put("parent", "getOTP");
-                    childYes.put("color", "black");
+//                    childYes.put("color", "black");
                     arrayChild.put(childYes);
                     object.put("children", arrayChild);
 
@@ -77,7 +77,7 @@ public class DecisionTreeService {
                         JSONObject child2Yes = new JSONObject();
                         child2Yes.put("name", "Location/Yes");
                         child2Yes.put("parent", "getLocation");
-                        child2Yes.put("color", "black");
+//                        child2Yes.put("color", "black");
 
                         arrayChild2.put(child2No);
                         arrayChild2.put(child2Yes);
@@ -97,7 +97,7 @@ public class DecisionTreeService {
                             JSONArray arrayChild4 = new JSONArray();
                             child4No.put("name", "Called/No");
                             child4No.put("parent", "getLocation");
-                            child4No.put("color", "black");
+//                            child4No.put("color", "black");
 
                             JSONObject child4Yes = new JSONObject();
                             child4Yes.put("name", "Called/Yes");
@@ -127,7 +127,7 @@ public class DecisionTreeService {
                             JSONObject child4Yes = new JSONObject();
                             child4Yes.put("name", "Called/Yes");
                             child4Yes.put("parent", "getLocation");
-                            child4Yes.put("color", "black");
+//                            child4Yes.put("color", "black");
 
                             arrayChild4.put(child4Yes);
                             arrayChild4.put(child4No);
@@ -160,7 +160,7 @@ public class DecisionTreeService {
                         JSONObject child2No = new JSONObject();
                         child2No.put("name", "Call/No");
                         child2No.put("parent", "getCallDetails");
-                        child2No.put("color", "black");
+//                        child2No.put("color", "black");
 
                         JSONObject leaf = new JSONObject();
                         JSONArray arrayLeaf = new JSONArray();
@@ -194,7 +194,7 @@ public class DecisionTreeService {
                     JSONObject childNo = new JSONObject();
                     childNo.put("name", "Location/No");
                     childNo.put("parent", "getLocation");
-                    childNo.put("color", "black");
+//                    childNo.put("color", "black");
                     arrayChild.put(childNo);
                     object.put("children", arrayChild);
 
@@ -215,7 +215,7 @@ public class DecisionTreeService {
                     JSONObject childYes = new JSONObject();
                     childYes.put("name", "Location/Yes");
                     childYes.put("parent", "getLocation");
-                    childYes.put("color", "black");
+//                    childYes.put("color", "black");
                     arrayChild.put(childYes);
                     object.put("children", arrayChild);
 
@@ -236,7 +236,7 @@ public class DecisionTreeService {
                         JSONObject child2Yes = new JSONObject();
                         child2Yes.put("name", "Call/Yes");
                         child2Yes.put("parent", "getCallDetails");
-                        child2Yes.put("color", "black");
+//                        child2Yes.put("color", "black");
 
                         JSONObject leaf = new JSONObject();
                         JSONArray arrayLeaf = new JSONArray();
@@ -263,7 +263,7 @@ public class DecisionTreeService {
                         JSONObject child2No = new JSONObject();
                         child2No.put("name", "Call/No");
                         child2No.put("parent", "getCallDetails");
-                        child2No.put("color", "black");
+//                        child2No.put("color", "black");
 
                         JSONObject leaf = new JSONObject();
                         JSONArray arrayLeaf = new JSONArray();
@@ -296,7 +296,7 @@ public class DecisionTreeService {
                     JSONObject childNo = new JSONObject();
                     childNo.put("name", "Location/No");
                     childNo.put("parent", "getLocation");
-                    childNo.put("color", "black");
+//                    childNo.put("color", "black");
                     arrayChild.put(childNo);
                     arrayChild.put(childYes);
                     object.put("children", arrayChild);
@@ -317,7 +317,7 @@ public class DecisionTreeService {
                     JSONObject childYes = new JSONObject();
                     childYes.put("name", "Location/Yes");
                     childYes.put("parent", "getLocation");
-                    childYes.put("color", "black");
+ //                   childYes.put("color", "black");
                     arrayChild.put(childYes);
                     arrayChild.put(childNo);
                     object.put("children", arrayChild);
@@ -345,7 +345,7 @@ public class DecisionTreeService {
                     JSONObject childNo = new JSONObject();
                     childNo.put("name", "Called/No");
                     childNo.put("parent", "getCallDetails");
-                    childNo.put("color", "black");
+//                    childNo.put("color", "black");
                     arrayChild.put(childNo);
                     object.put("children", arrayChild);
 
@@ -366,7 +366,7 @@ public class DecisionTreeService {
                     JSONObject childYes = new JSONObject();
                     childYes.put("name", "Called/Yes");
                     childYes.put("parent", "getCallDetails");
-                    childYes.put("color", "black");
+//                    childYes.put("color", "black");
                     arrayChild.put(childYes);
                     object.put("children", arrayChild);
 
@@ -393,7 +393,7 @@ public class DecisionTreeService {
                     JSONObject childNo = new JSONObject();
                     childNo.put("name", "Location/No");
                     childNo.put("parent", "getLocation");
-                    childNo.put("color", "black");
+//                    childNo.put("color", "black");
                     arrayChild.put(childNo);
                     object.put("children", arrayChild);
 
@@ -414,7 +414,7 @@ public class DecisionTreeService {
                     JSONObject childYes = new JSONObject();
                     childYes.put("name", "Location/Yes");
                     childYes.put("parent", "getLocation");
-                    childYes.put("color", "black");
+//                    childYes.put("color", "black");
                     arrayChild.put(childYes);
                     object.put("children", arrayChild);
 
@@ -434,7 +434,7 @@ public class DecisionTreeService {
                         JSONObject child2Yes = new JSONObject();
                         child2Yes.put("name", "Call/Yes");
                         child2Yes.put("parent", "getCallDetails");
-                        child2Yes.put("color", "black");
+//                        child2Yes.put("color", "black");
 
                         JSONObject leaf = new JSONObject();
                         JSONArray arrayLeaf = new JSONArray();
@@ -461,7 +461,7 @@ public class DecisionTreeService {
                         JSONObject child2No = new JSONObject();
                         child2No.put("name", "Call/No");
                         child2No.put("parent", "getCallDetails");
-                        child2No.put("color", "black");
+//                        child2No.put("color", "black");
 
                         JSONObject leaf = new JSONObject();
                         JSONArray arrayLeaf = new JSONArray();
