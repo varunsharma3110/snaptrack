@@ -553,59 +553,10 @@ public class DecisionTreeService {
                 decision.setOtp_validated(true);
             else
                 decision.setOtp_validated(false);
-            GeoPointSRO custSro = new GeoPointSRO();
-            Double custLat = master.getCustLat();
-            Double custLong = master.getCustLong();
-            GeoAngleSRO lat = new GeoAngleSRO();
-            if (custLat > 0) {
-                lat.setAngle(custLat);
-                lat.setDirection('N');
-            }
-            else {
-                lat.setAngle(custLat * -1);
-                lat.setDirection('S');
-            }
-            custSro.setLattitude(lat);
-            GeoAngleSRO lon = new GeoAngleSRO();
-            if (custLong > 0) {
-                lon.setAngle(custLong);
-                lon.setDirection('E');
-            }
-            else {
-                lon.setAngle(custLong * -1);
-                lon.setDirection('W');
-            }
-            custSro.setLongitude(lon);
-
-            GeoPointSRO feSro = new GeoPointSRO();
-            Double feLat = master.getFeLat();
-            Double feLong = master.getFeLong();
-            lat = new GeoAngleSRO();
-            if (feLat > 0) {
-                lat.setAngle(feLat);
-                lat.setDirection('N');
-            }
-            else {
-                lat.setAngle(feLat * -1);
-                lat.setDirection('S');
-            }
-            feSro.setLattitude(lat);
-            lon = new GeoAngleSRO();
-            if (feLong > 0) {
-                lon.setAngle(feLong);
-                lon.setDirection('E');
-            }
-            else {
-                lon.setAngle(feLong * -1);
-                lon.setDirection('W');
-            }
-            feSro.setLongitude(lon);
-
-            double dist = geoLocationService.compareTwoPoints(feSro, custSro);
-            if (dist > 2)
-                decision.setLoc_validated(false);
-            else
+            if (master.getDistance() < 5)
                 decision.setLoc_validated(true);
+            else
+                decision.setLoc_validated(false);
 
             String duration = master.getCallDuration();
             if (duration != null) {
