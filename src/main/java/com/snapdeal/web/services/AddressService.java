@@ -18,7 +18,7 @@ public class AddressService {
 
     @PostConstruct
     public void init() {
-        findDiffBetweenTwoLocations();
+//        findDiffBetweenTwoLocations();
     }
 
     @Autowired
