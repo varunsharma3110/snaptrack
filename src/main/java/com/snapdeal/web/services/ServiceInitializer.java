@@ -22,6 +22,8 @@ public class ServiceInitializer {
     @Autowired
     AddressService addressService;
 
+    @Autowired
+    DecisionTreeService decisionTreeService;
 
     @PostConstruct
     private void init(){
@@ -33,8 +35,6 @@ public class ServiceInitializer {
         List<SnapTrackMaster> unprocessedSnapTrackMaster=snapTrackRepository.findAllUnprocessedOrders(false);
 
         addressService.feedDistanceBetweenCustomerAndCourierLocation(unprocessedSnapTrackMaster);
-
-
-
+        decisionTreeService.updateMasterDecisionTable();
     }
 }

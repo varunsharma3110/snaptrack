@@ -6,16 +6,27 @@ import com.snapdeal.enums.Decision;
 import com.snapdeal.enums.RTOType;
 import com.snapdeal.repository.ISnapTrackMasterDecisonRepository;
 import com.snapdeal.repository.ISnapTrackRepository;
+import com.snapdeal.sro.GeoAngleSRO;
+import com.snapdeal.sro.GeoPointSRO;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
+import java.util.List;
 
 @Service
 public class DecisionTreeService {
 
     @Autowired
     ISnapTrackRepository snapTrackRepository;
+
+    @Autowired
+    ISnapTrackMasterDecisonRepository masterDecisonRepository;
+
+    @Autowired
+    GeoLocationService geoLocationService;
 
     public String createDecisionJson(RTOType type, SnaptrackMasterDecision decision) {
         JSONObject object = new JSONObject();
@@ -528,5 +539,85 @@ public class DecisionTreeService {
                 }
         }
         return object.toString();
+    }
+
+    public void updateMasterDecisionTable() {
+        List<SnapTrackMaster> masterList = snapTrackRepository.findAll();
+        for (SnapTrackMaster master : masterList) {
+            SnaptrackMasterDecision decision = masterDecisonRepository.findDecisonTreeByOrderId(master.getOrderId()).get(0);
+            if (decision == null) {
+                decision = new SnaptrackMasterDecision();
+                decision.setCreated(new Date());
+            }
+            if (master.getOtp() != null)
+                decision.setOtp_validated(true);
+            else
+                decision.setOtp_validated(false);
+            GeoPointSRO custSro = new GeoPointSRO();
+            Double custLat = master.getCustLat();
+            Double custLong = master.getCustLong();
+            GeoAngleSRO lat = new GeoAngleSRO();
+            if (custLat > 0) {
+                lat.setAngle(custLat);
+                lat.setDirection('N');
+            }
+            else {
+                lat.setAngle(custLat * -1);
+                lat.setDirection('S');
+            }
+            custSro.setLattitude(lat);
+            GeoAngleSRO lon = new GeoAngleSRO();
+            if (custLong > 0) {
+                lon.setAngle(custLong);
+                lon.setDirection('E');
+            }
+            else {
+                lon.setAngle(custLong * -1);
+                lon.setDirection('W');
+            }
+            custSro.setLongitude(lon);
+
+            GeoPointSRO feSro = new GeoPointSRO();
+            Double feLat = master.getFeLat();
+            Double feLong = master.getFeLong();
+            lat = new GeoAngleSRO();
+            if (feLat > 0) {
+                lat.setAngle(feLat);
+                lat.setDirection('N');
+            }
+            else {
+                lat.setAngle(feLat * -1);
+                lat.setDirection('S');
+            }
+            feSro.setLattitude(lat);
+            lon = new GeoAngleSRO();
+            if (feLong > 0) {
+                lon.setAngle(feLong);
+                lon.setDirection('E');
+            }
+            else {
+                lon.setAngle(feLong * -1);
+                lon.setDirection('W');
+            }
+            feSro.setLongitude(lon);
+
+            double dist = geoLocationService.compareTwoPoints(feSro, custSro);
+            if (dist > 2)
+                decision.setLoc_validated(false);
+            else
+                decision.setLoc_validated(true);
+
+            String duration = master.getCallDuration();
+            int min = Integer.parseInt(duration.split(":")[0]);
+            int sec = Integer.parseInt(duration.split(":")[1]);
+            int time = min * 60 + sec;
+            if(master.getCallStatus().equals("Connected") && time > 10)
+                decision.setCall_validated(true);
+            else
+                decision.setCall_validated(false);
+            decision.setRtoReason(master.getRtoReason());
+
+            masterDecisonRepository.saveAndFlush(decision);
+        }
     }
 }
