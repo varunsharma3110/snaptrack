@@ -45,6 +45,9 @@ public class DecisionTreeService {
                     leaf.put("color", "green");
                     arrayLeaf.put(leaf);
                     childYes.put("children", arrayLeaf);
+                    SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
+                    master.setDtReason(Decision.NOT_FAKE.name());
+                    snapTrackRepository.saveAndFlush(master);
                 } else {
                     JSONObject childNo = new JSONObject();
                     JSONArray arrayChild = new JSONArray();
@@ -116,6 +119,9 @@ public class DecisionTreeService {
                             // child2.put("children", leaf);
                             arrayLeaf.put(leaf);
                             child4Yes.put("children", arrayLeaf);
+                            SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
+                            master.setDtReason(Decision.YELLOW_ZONE.name());
+                            snapTrackRepository.saveAndFlush(master);
                         }
                         else {
                             JSONObject child4No = new JSONObject();
@@ -140,6 +146,9 @@ public class DecisionTreeService {
                             leaf.put("color", "red");
                             arrayLeaf.put(leaf);
                             child4Yes.put("children", arrayLeaf);
+                            SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
+                            master.setDtReason(Decision.FAKE.name());
+                            snapTrackRepository.saveAndFlush(master);
                         }
 
                         JSONObject leaf = new JSONObject();
@@ -150,6 +159,9 @@ public class DecisionTreeService {
                         arrayLeaf.put(leaf);
                         child2No.put("children", arrayLeaf);
                         childNo.put("children", arrayChild1);
+                        SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
+                        master.setDtReason(Decision.FAKE.name());
+                        snapTrackRepository.saveAndFlush(master);
                     } else {
                         JSONObject child2Yes = new JSONObject();
                         JSONArray arrayChild2 = new JSONArray();
@@ -177,6 +189,9 @@ public class DecisionTreeService {
                         // child.put("children", child1);
                         arrayChild1.put(child1);
                         childNo.put("children", arrayChild1);
+                        SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
+                        master.setDtReason(Decision.YELLOW_ZONE.name());
+                        snapTrackRepository.saveAndFlush(master);
                     }
                 }
                 break;
@@ -205,6 +220,9 @@ public class DecisionTreeService {
                     leaf.put("color", "green");
                     arrayLeaf.put(leaf);
                     childYes.put("children", arrayLeaf);
+                    SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
+                    master.setDtReason(Decision.NOT_FAKE.name());
+                    snapTrackRepository.saveAndFlush(master);
                 } else {
                     JSONObject childNo = new JSONObject();
                     JSONArray arrayChild = new JSONArray();
@@ -246,6 +264,9 @@ public class DecisionTreeService {
                         // child2.put("children", leaf);
                         arrayLeaf.put(leaf);
                         child2No.put("children", arrayLeaf);
+                        SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
+                        master.setDtReason(Decision.FAKE.name());
+                        snapTrackRepository.saveAndFlush(master);
                         // child1.put("children", child2);
                         arrayChild2.put(child2No);
                         arrayChild2.put(child2Yes);
@@ -273,6 +294,9 @@ public class DecisionTreeService {
                         // child2.put("children", leaf);
                         arrayLeaf.put(leaf);
                         child2Yes.put("children", arrayLeaf);
+                        SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
+                        master.setDtReason(Decision.YELLOW_ZONE.name());
+                        snapTrackRepository.saveAndFlush(master);
                         // child1.put("children", child2);
                         arrayChild2.put(child2Yes);
                         arrayChild2.put(child2No);
@@ -308,6 +332,9 @@ public class DecisionTreeService {
                     leaf.put("color", "green");
                     arrayLeaf.put(leaf);
                     childYes.put("children", arrayLeaf);
+                    SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
+                    master.setDtReason(Decision.NOT_FAKE.name());
+                    snapTrackRepository.saveAndFlush(master);
                 } else {
                     JSONArray arrayChild = new JSONArray();
                     JSONObject childNo = new JSONObject();
@@ -329,6 +356,9 @@ public class DecisionTreeService {
                     leaf.put("color", "red");
                     arrayLeaf.put(leaf);
                     childNo.put("children", arrayLeaf);
+                    SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
+                    master.setDtReason(Decision.FAKE.name());
+                    snapTrackRepository.saveAndFlush(master);
                 }
                 break;
             case CD:
@@ -356,6 +386,9 @@ public class DecisionTreeService {
                     leaf.put("color", "yellow");
                     arrayLeaf.put(leaf);
                     childYes.put("children", arrayLeaf);
+                    SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
+                    master.setDtReason(Decision.YELLOW_ZONE.name());
+                    snapTrackRepository.saveAndFlush(master);
                 } else {
                     JSONArray arrayChild = new JSONArray();
                     JSONObject childNo = new JSONObject();
@@ -377,6 +410,9 @@ public class DecisionTreeService {
                     leaf.put("color", "red");
                     arrayLeaf.put(leaf);
                     childNo.put("children", arrayLeaf);
+                    SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
+                    master.setDtReason(Decision.FAKE.name());
+                    snapTrackRepository.saveAndFlush(master);
                 }
                 break;
             case AI:
@@ -404,6 +440,9 @@ public class DecisionTreeService {
                     leaf.put("color", "green");
                     arrayLeaf.put(leaf);
                     childYes.put("children", arrayLeaf);
+                    SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
+                    master.setDtReason(Decision.NOT_FAKE.name());
+                    snapTrackRepository.saveAndFlush(master);
                 } else {
                     JSONObject childNo = new JSONObject();
                     JSONArray arrayChild = new JSONArray();
@@ -444,6 +483,9 @@ public class DecisionTreeService {
                         // child2.put("children", leaf);
                         arrayLeaf.put(leaf);
                         child2No.put("children", arrayLeaf);
+                        SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
+                        master.setDtReason(Decision.FAKE.name());
+                        snapTrackRepository.saveAndFlush(master);
                         // child1.put("children", child2);
                         arrayChild2.put(child2No);
                         arrayChild2.put(child2Yes);
@@ -471,6 +513,9 @@ public class DecisionTreeService {
                         // child2.put("children", leaf);
                         arrayLeaf.put(leaf);
                         child2Yes.put("children", arrayLeaf);
+                        SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
+                        master.setDtReason(Decision.YELLOW_ZONE.name());
+                        snapTrackRepository.saveAndFlush(master);
                         // child1.put("children", child2);
                         arrayChild2.put(child2Yes);
                         arrayChild2.put(child2No);
