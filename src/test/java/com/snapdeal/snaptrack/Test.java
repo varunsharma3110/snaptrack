@@ -18,9 +18,9 @@ public class Test {
     }
 
 
-   // public static void main(String args[]){
-   //     testCompareTwoPoints();
-   // }
+    public static void main(String args[]){
+        testCompareTwoPoints();
+    }
 
 
     public static double compareTwoPoints(GeoPointSRO point1, GeoPointSRO point2) {

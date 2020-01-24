@@ -1,15 +1,31 @@
 package com.snapdeal.web.services;
 
+import com.snapdeal.entity.SnapTrackMaster;
+import com.snapdeal.repository.ISnapTrackRepository;
 import com.snapdeal.sro.AddressSRO;
 import com.snapdeal.sro.GeoAngleSRO;
 import com.snapdeal.sro.GeoPointSRO;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
+import java.util.List;
+
+@Service
 public class AddressService {
+
+
+    @PostConstruct
+    public void init() {
+        findDiffBetweenTwoLocations();
+    }
 
     @Autowired
     private GeoLocationService geoLocationService;
+
+    @Autowired
+    private ISnapTrackRepository snapTrackRepository;
 
 
     public AddressSRO getAddressByOrderId(String orderId) {
@@ -46,6 +62,24 @@ public class AddressService {
         sro.setLongitude(lon);
         sro.setLattitude(lat);
         return sro;
+    }
+
+
+    private void findDiffBetweenTwoLocations() {
+
+        List<String> orderIds = snapTrackRepository.findAllOrderIds();
+
+        for (String orderId : orderIds) {
+            AddressSRO address = getAddressByOrderId(orderId);
+            GeoPointSRO geoPointSRO = getGeoLocationFromAddress(address);
+            System.out.println(geoPointSRO.getLattitude().getAngle());
+            SnapTrackMaster obj = snapTrackRepository.findOneByOrderId(orderId).get(0);
+            obj.setLatitude(geoPointSRO.getLattitude().getAngle());
+            snapTrackRepository.saveAndFlush(obj);
+
+        }
+
+
     }
 
 
