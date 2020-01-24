@@ -550,6 +550,7 @@ public class DecisionTreeService {
                 decision = decisionList.get(0);
             else {
                 decision = new SnaptrackMasterDecision();
+                decision.setOrderId(master.getOrderId());
                 decision.setCreated(new Date());
             }
             if (master.getOtp() != null)
