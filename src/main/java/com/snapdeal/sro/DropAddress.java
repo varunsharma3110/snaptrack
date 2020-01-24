@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 
 @JsonIgnoreProperties
-public class dropAddress implements Serializable {
+public class DropAddress implements Serializable {
 
     private String addressLine1;
     private String addressLine2;

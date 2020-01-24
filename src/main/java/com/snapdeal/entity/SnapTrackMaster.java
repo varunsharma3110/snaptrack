@@ -11,12 +11,12 @@ public class SnapTrackMaster implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
     private String orderId;
-    private double custlat;
-    private double custlong;
+    private double custLat;
+    private double custLong;
     private String otp;
     private String callStatus;
-    private double felat;
-    private double felong;
+    private double feLat;
+    private double feLong;
     private String callDuration;
     private Date created;
     private String rtoReason;
@@ -49,21 +49,6 @@ public class SnapTrackMaster implements Serializable {
         this.rtoReason = rtoReason;
     }
 
-    public double getCustlat() {
-        return custlat;
-    }
-
-    public void setCustlat(double custlat) {
-        this.custlat = custlat;
-    }
-
-    public double getCustlong() {
-        return custlong;
-    }
-
-    public void setCustlong(double custlong) {
-        this.custlong = custlong;
-    }
 
     public String getOtp() {
         return otp;
@@ -81,21 +66,7 @@ public class SnapTrackMaster implements Serializable {
         this.callStatus = callStatus;
     }
 
-    public double getFelat() {
-        return felat;
-    }
 
-    public void setFelat(double felat) {
-        this.felat = felat;
-    }
-
-    public double getFelong() {
-        return felong;
-    }
-
-    public void setFelong(double felong) {
-        this.felong = felong;
-    }
 
     public double getDistance() {
         return distance;
@@ -129,17 +100,49 @@ public class SnapTrackMaster implements Serializable {
         this.dtReason = dtReason;
     }
 
+    public double getCustLat() {
+        return custLat;
+    }
+
+    public void setCustLat(double custLat) {
+        this.custLat = custLat;
+    }
+
+    public double getCustLong() {
+        return custLong;
+    }
+
+    public void setCustLong(double custLong) {
+        this.custLong = custLong;
+    }
+
+    public double getFeLat() {
+        return feLat;
+    }
+
+    public void setFeLat(double feLat) {
+        this.feLat = feLat;
+    }
+
+    public double getFeLong() {
+        return feLong;
+    }
+
+    public void setFeLong(double feLong) {
+        this.feLong = feLong;
+    }
+
     @Override
     public String toString() {
         return "SnapTrackMaster{" +
                 "id=" + id +
                 ", orderId='" + orderId + '\'' +
-                ", custlat=" + custlat +
-                ", custlong=" + custlong +
+                ", custLat=" + custLat +
+                ", custLong=" + custLong +
                 ", otp='" + otp + '\'' +
                 ", callStatus='" + callStatus + '\'' +
-                ", felat=" + felat +
-                ", felong=" + felong +
+                ", feLat=" + feLat +
+                ", feLong=" + feLong +
                 ", callDuration='" + callDuration + '\'' +
                 ", created=" + created +
                 ", rtoReason='" + rtoReason + '\'' +
