@@ -173,15 +173,42 @@ $('#fetchAllRecords').click(function() {
 
     });
 
+    $('#filterYellow').click(function() {
+
+            $.ajax({
+    				type : "GET",
+    				dataType : 'json',
+    				async : false,
+    				data:{
+                         "decision":"YELLOW_ZONE"
+                     },
+    				url : "getFromData",
+    				success : function(data) {
+    					t = data.results;
+    					console.log(t);
+    					fetchAllRecordsYellow(t)
+
+    				},
+    				error : function() {
+    					alert("error");
+    				}
+
+    			});
+
+
+        });
+
+
+
     function fetchAllRecords(t) {
     $('#chart1').empty();
     $('#tab_logic').empty();
     $('#tab_logic_yellow').empty();
     var html="";
     html+="<thead> <tr>  <th scope='col'>Order Id</th> <th scope='col'>Customer Latitude/Longitude</th> <th scope='col'>Courier Latitude/Longitude</th> <th scope='col'>OTP</th> <th scope='col'>Call Status</th>  <th scope='col'>Call Duration</th> <th scope='col'>Date</th><th scope='col'>RTO Reason</th> <th scope='col'>DT Reason</th><th scope='col'>Distance</th></tr> </thead> <tbody> ";
-    for (var i = 0; i < t.length ; i++) {
-      html+="<tr> <td onclick='tableFunction(this)' data-toggle='modal' data-target='#myModal'> <p id='trow"+i+"'>" + t[i].orderId  + "</p></td> <td> <p> " + t[i].custLat+","+t[i].custLong +"</p></td> <td> <p>  " + t[i].feLat +","+t[i].feLong + "</p></td> <td> <p> " +t[i].otp +"</p></td> <td> <p>  " + t[i].callStatus + "</p></td>  <td> <p> "+  t[i].callDuration  +" </p></td> <td> <p> "+  t[i].created  +" </p></td><td> <p> "+  t[i].rtoReason  +" </p></td><td> <p> "+  t[i].dtReason  +" </p></td> <td> <p> "+  t[i].distance  +" </p></td></tr>"
-    }
+                for (var i = 0; i < t.length ; i++) {
+                  html+="<tr> <td onclick='tableFunction(this)' data-toggle='modal' data-target='#myModal'> <p id='trow"+i+"'>" + t[i].orderId  + "</p></td> <td> <p> " + t[i].custLat+","+t[i].custLong +"</p></td> <td> <p>  " + t[i].feLat +","+t[i].feLong + "</p></td> <td> <p> " +t[i].otp +"</p></td> <td> <p>  " + t[i].callStatus + "</p></td>  <td> <p> "+  t[i].callDuration  +" </p></td> <td> <p> "+  t[i].created  +" </p></td><td> <p> "+  t[i].rtoReason  +" </p></td><td> <p> "+  t[i].dtReason  +" </p></td> <td> <p> "+  t[i].distance  +" </p></td></tr>"
+                }
     html+="</tbody>";
     $('#tab_logic').append(html);
 
@@ -191,14 +218,14 @@ $('#fetchAllRecords').click(function() {
             $('#tab_logic').empty();
             $('#tab_logic_yellow').empty();
             var html="";
-            html+="<thead> <tr>  <th scope='col'>Order Id</th> <th scope='col'>Customer Latitude/Longitude</th> <th scope='col'>Courier Latitude/Longitude</th> <th scope='col'>OTP</th> <th scope='col'>Call Status</th>  <th scope='col'>Call Duration</th> <th scope='col'>Date</th><th scope='col'>RTO Reason</th> <th scope='col'>DT Reason</th><th scope='col'>Distance</th></tr> </thead> <tbody> ";
-            for (var i = 0; i < t.length ; i++) {
-              html+="<tr> <td onclick='tableFunction(this)' data-toggle='modal' data-target='#myModal'> <p id='trow"+i+"'>" + t[i].orderId  + "</p></td> <td> <p> " + t[i].custLat+","+t[i].custLong +"</p></td> <td> <p>  " + t[i].feLat +","+t[i].feLong + "</p></td> <td> <p> " +t[i].otp +"</p></td> <td> <p>  " + t[i].callStatus + "</p></td>  <td> <p> "+  t[i].callDuration  +" </p></td> <td> <p> "+  t[i].created  +" </p></td><td> <p> "+  t[i].rtoReason  +" </p></td><td> <p> "+  t[i].dtReason  +" </p></td> <td> <p> "+  t[i].distance  +" </p></td></tr>"
-            }
+            html+="<thead> <tr>  <th scope='col'>Order Id</th> <th scope='col'>Customer Latitude/Longitude</th> <th scope='col'>Courier Latitude/Longitude</th> <th scope='col'>OTP</th> <th scope='col'>Call Status</th>  <th scope='col'>Call Duration</th> <th scope='col'>Date</th><th scope='col'>RTO Reason</th> <th scope='col'>DT Reason</th><th scope='col'>Distance</th><th scope='col'>Customer RTO Score</th><th scope='col'>Customer Can Tickets</th><th scope='col'>Probability Fake</th></tr> </thead> <tbody> ";
+                for (var i = 0; i < t.length ; i++) {
+                  html+="<tr> <td onclick='tableFunction(this)' data-toggle='modal' data-target='#myModal'> <p id='trow"+i+"'>" + t[i].orderId  + "</p></td> <td> <p> " + t[i].custLat+","+t[i].custLong +"</p></td> <td> <p>  " + t[i].feLat +","+t[i].feLong + "</p></td> <td> <p> " +t[i].otp +"</p></td> <td> <p>  " + t[i].callStatus + "</p></td>  <td> <p> "+  t[i].callDuration  +" </p></td> <td> <p> "+  t[i].created  +" </p></td><td> <p> "+  t[i].rtoReason  +" </p></td><td> <p> "+  t[i].dtReason  +" </p></td> <td> <p> "+  t[i].distance  +" </p></td> <td> <p> "+  t[i].customerRtoScore  +" </p></td> <td> <p> "+  t[i].customerCancellationTickets  +" </p></td> <td> <p> "+  t[i].probabilityRecommendation  +" </p></td></tr>"
+                }
             html+="</tbody>";
             $('#tab_logic_yellow').append(html);
 
-            }
+      }
     function tableFunction(i){
     var txt = i.innerText;
      $.ajax({
@@ -266,7 +293,7 @@ $('#fetchAllRecords').click(function() {
             		  return "translate(" + d.y + "," + d.x + ")"; });
 
               nodeEnter.append("circle")
-            	  .attr("r", 40)
+            	  .attr("r", 15)
             	  .style("fill", function(d) { return d.color; });
 
               nodeEnter.append("text")
