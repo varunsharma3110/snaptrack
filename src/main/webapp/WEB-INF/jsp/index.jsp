@@ -26,7 +26,6 @@
 	  stroke: #ccc;
 	  stroke-width: 2px;
 	}
-
     </style>
 
 <!-- Latest compiled and minified CSS -->
@@ -90,13 +89,13 @@
 <p id="pieChart"></p>
 
 <div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog" style="width:1250px;">
 
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
+        <h4 class="modal-title">Decision Path</h4>
       </div>
       <div class="modal-body" id="modalInnerText">
       </div>
