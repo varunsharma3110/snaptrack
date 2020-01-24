@@ -68,13 +68,10 @@ public class SnapTrackController {
     }
 
 
-<<<<<<< HEAD
+
     @GetMapping ("getFromData")
     public SnapTrackMasterResponse getAll(@RequestParam(value = "decision", required=false) String decision){
-=======
-    @GetMapping("getFromData")
-    public SnapTrackMasterResponse getAll(@RequestParam(value = "decison", required = false) String decision) {
->>>>>>> 53efbe0f94d019e20cb174bfab80008fff5e0086
+
         SnapTrackMasterResponse response = new SnapTrackMasterResponse();
         if (!StringUtils.isEmpty(decision)) {
             response.setResults(repository.findAllByDecison(decision));
