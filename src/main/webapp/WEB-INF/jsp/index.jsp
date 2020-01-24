@@ -92,7 +92,7 @@
   <div class="modal-dialog" style="width:1250px;">
 
     <!-- Modal content-->
-    <div class="modal-content">
+    <div class="modal-content" >
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Decision Path</h4>
@@ -250,17 +250,17 @@ $('#fetchAllRecords').click(function() {
             		  return "translate(" + d.y + "," + d.x + ")"; });
 
               nodeEnter.append("circle")
-            	  .attr("r", 10)
+            	  .attr("r", 40)
             	  .style("fill", "#fff");
 
               nodeEnter.append("text")
             	  .attr("x", function(d) {
-            		  return d.children || d._children ? -13 : 13; })
-            	  .attr("dy", ".35em")
+            		  return d.children || d._children ? -63 : 63; })
+            	  .attr("dy", "2.5em")
             	  .attr("text-anchor", function(d) {
             		  return d.children || d._children ? "end" : "start"; })
             	  .text(function(d) { return d.name; })
-            	  .style("fill-opacity", 1);
+            	  .style("fill-opacity", 10);
 
               // Declare the links…
               var link = svg.selectAll("path.link")
