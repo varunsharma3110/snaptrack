@@ -77,7 +77,7 @@
 <center>
 <button type="button" class="btn btn-default" id="fetchAllRecords">Fetch All Records </button>
 <button type="button" class="btn btn-default" id="fetchReport">Fetch Reports </button>
-<button type="button" class="btn btn-default" id="filterYellow">Filter Yellow Zone</button>
+<button type="button" class="btn btn-default" id="filterYellow">Yellow Zone Report</button>
 </center>
 <br>
 <br>
@@ -149,7 +149,6 @@ $('#fetchReport').click(function() {
     });
 
 $('#fetchAllRecords').click(function() {
-
         $.ajax({
 				type : "GET",
 				dataType : 'json',
@@ -207,7 +206,7 @@ $('#fetchAllRecords').click(function() {
     var html="";
     html+="<thead> <tr>  <th scope='col'>Order Id</th> <th scope='col'>Customer Latitude/Longitude</th> <th scope='col'>Courier Latitude/Longitude</th> <th scope='col'>OTP</th> <th scope='col'>Call Status</th>  <th scope='col'>Call Duration</th> <th scope='col'>Date</th><th scope='col'>RTO Reason</th> <th scope='col'>DT Reason</th><th scope='col'>Distance</th></tr> </thead> <tbody> ";
                 for (var i = 0; i < t.length ; i++) {
-                  html+="<tr> <td onclick='tableFunction(this)' data-toggle='modal' data-target='#myModal'> <p id='trow"+i+"'>" + t[i].orderId  + "</p></td> <td> <p> " + t[i].custLat+","+t[i].custLong +"</p></td> <td> <p>  " + t[i].feLat +","+t[i].feLong + "</p></td> <td> <p> " +t[i].otp +"</p></td> <td> <p>  " + t[i].callStatus + "</p></td>  <td> <p> "+  t[i].callDuration  +" </p></td> <td> <p> "+  t[i].created  +" </p></td><td> <p> "+  t[i].rtoReason  +" </p></td><td> <p> "+  t[i].dtReason  +" </p></td> <td> <p> "+  t[i].distance  +" </p></td></tr>"
+                  html+="<tr> <td onclick='tableFunction(this)' data-toggle='modal' data-target='#myModal' style='color:#0000ff'> <p id='trow"+i+"'>" + t[i].orderId  + "</p></td> <td> <p> " + t[i].custLat+","+t[i].custLong +"</p></td> <td> <p>  " + t[i].feLat +","+t[i].feLong + "</p></td> <td> <p> " +t[i].otp +"</p></td> <td> <p>  " + t[i].callStatus + "</p></td>  <td> <p> "+  t[i].callDuration  +" </p></td> <td> <p> "+  t[i].created  +" </p></td><td> <p> "+  t[i].rtoReason  +" </p></td><td> <p> "+  t[i].dtReason  +" </p></td> <td> <p> "+  t[i].distance  +" </p></td></tr>"
                 }
     html+="</tbody>";
     $('#tab_logic').append(html);
@@ -218,7 +217,7 @@ $('#fetchAllRecords').click(function() {
             $('#tab_logic').empty();
             $('#tab_logic_yellow').empty();
             var html="";
-            html+="<thead> <tr>  <th scope='col'>Order Id</th> <th scope='col'>Customer Latitude/Longitude</th> <th scope='col'>Courier Latitude/Longitude</th> <th scope='col'>OTP</th> <th scope='col'>Call Status</th>  <th scope='col'>Call Duration</th> <th scope='col'>Date</th><th scope='col'>RTO Reason</th> <th scope='col'>DT Reason</th><th scope='col'>Distance</th><th scope='col'>Customer RTO Score</th><th scope='col'>Customer Can Tickets</th><th scope='col'>Probability Fake</th></tr> </thead> <tbody> ";
+            html+="<thead> <tr>  <th scope='col'>Order Id</th> <th scope='col'>Customer Latitude/Longitude</th> <th scope='col'>Courier Latitude/Longitude</th> <th scope='col'>OTP</th> <th scope='col'>Call Status</th>  <th scope='col'>Call Duration</th> <th scope='col'>Date</th><th scope='col'>RTO Reason</th> <th scope='col'>DT Reason</th><th scope='col'>Distance</th><th scope='col'>Customer RTO Score</th><th scope='col'>Customer Can Tickets</th><th scope='col'>Percentage Fake</th></tr> </thead> <tbody> ";
                 for (var i = 0; i < t.length ; i++) {
                   html+="<tr> <td onclick='tableFunction(this)' data-toggle='modal' data-target='#myModal'> <p id='trow"+i+"'>" + t[i].orderId  + "</p></td> <td> <p> " + t[i].custLat+","+t[i].custLong +"</p></td> <td> <p>  " + t[i].feLat +","+t[i].feLong + "</p></td> <td> <p> " +t[i].otp +"</p></td> <td> <p>  " + t[i].callStatus + "</p></td>  <td> <p> "+  t[i].callDuration  +" </p></td> <td> <p> "+  t[i].created  +" </p></td><td> <p> "+  t[i].rtoReason  +" </p></td><td> <p> "+  t[i].dtReason  +" </p></td> <td> <p> "+  t[i].distance  +" </p></td> <td> <p> "+  t[i].customerRtoScore  +" </p></td> <td> <p> "+  t[i].customerCancellationTickets  +" </p></td> <td> <p> "+  t[i].probabilityRecommendation  +" </p></td></tr>"
                 }
