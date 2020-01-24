@@ -47,7 +47,7 @@ public class DecisionTreeService {
                     childYes.put("children", arrayLeaf);
                     SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
                     master.setDtReason(Decision.NOT_FAKE.name());
-                    snapTrackRepository.saveAndFlush(master);
+                    snapTrackRepository.save(master);
                 } else {
                     JSONObject childNo = new JSONObject();
                     JSONArray arrayChild = new JSONArray();
@@ -121,7 +121,7 @@ public class DecisionTreeService {
                             child4Yes.put("children", arrayLeaf);
                             SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
                             master.setDtReason(Decision.YELLOW_ZONE.name());
-                            snapTrackRepository.saveAndFlush(master);
+                            snapTrackRepository.save(master);
                         }
                         else {
                             JSONObject child4No = new JSONObject();
@@ -148,7 +148,7 @@ public class DecisionTreeService {
                             child4Yes.put("children", arrayLeaf);
                             SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
                             master.setDtReason(Decision.FAKE.name());
-                            snapTrackRepository.saveAndFlush(master);
+                            snapTrackRepository.save(master);
                         }
 
                         JSONObject leaf = new JSONObject();
@@ -161,7 +161,7 @@ public class DecisionTreeService {
                         childNo.put("children", arrayChild1);
                         SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
                         master.setDtReason(Decision.FAKE.name());
-                        snapTrackRepository.saveAndFlush(master);
+                        snapTrackRepository.save(master);
                     } else {
                         JSONObject child2Yes = new JSONObject();
                         JSONArray arrayChild2 = new JSONArray();
@@ -191,7 +191,7 @@ public class DecisionTreeService {
                         childNo.put("children", arrayChild1);
                         SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
                         master.setDtReason(Decision.YELLOW_ZONE.name());
-                        snapTrackRepository.saveAndFlush(master);
+                        snapTrackRepository.save(master);
                     }
                 }
                 break;
@@ -222,7 +222,7 @@ public class DecisionTreeService {
                     childYes.put("children", arrayLeaf);
                     SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
                     master.setDtReason(Decision.NOT_FAKE.name());
-                    snapTrackRepository.saveAndFlush(master);
+                    snapTrackRepository.save(master);
                 } else {
                     JSONObject childNo = new JSONObject();
                     JSONArray arrayChild = new JSONArray();
@@ -266,7 +266,7 @@ public class DecisionTreeService {
                         child2No.put("children", arrayLeaf);
                         SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
                         master.setDtReason(Decision.FAKE.name());
-                        snapTrackRepository.saveAndFlush(master);
+                        snapTrackRepository.save(master);
                         // child1.put("children", child2);
                         arrayChild2.put(child2No);
                         arrayChild2.put(child2Yes);
@@ -296,7 +296,7 @@ public class DecisionTreeService {
                         child2Yes.put("children", arrayLeaf);
                         SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
                         master.setDtReason(Decision.YELLOW_ZONE.name());
-                        snapTrackRepository.saveAndFlush(master);
+                        snapTrackRepository.save(master);
                         // child1.put("children", child2);
                         arrayChild2.put(child2Yes);
                         arrayChild2.put(child2No);
@@ -334,7 +334,7 @@ public class DecisionTreeService {
                     childYes.put("children", arrayLeaf);
                     SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
                     master.setDtReason(Decision.NOT_FAKE.name());
-                    snapTrackRepository.saveAndFlush(master);
+                    snapTrackRepository.save(master);
                 } else {
                     JSONArray arrayChild = new JSONArray();
                     JSONObject childNo = new JSONObject();
@@ -358,7 +358,7 @@ public class DecisionTreeService {
                     childNo.put("children", arrayLeaf);
                     SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
                     master.setDtReason(Decision.FAKE.name());
-                    snapTrackRepository.saveAndFlush(master);
+                    snapTrackRepository.save(master);
                 }
                 break;
             case CD:
@@ -388,7 +388,7 @@ public class DecisionTreeService {
                     childYes.put("children", arrayLeaf);
                     SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
                     master.setDtReason(Decision.YELLOW_ZONE.name());
-                    snapTrackRepository.saveAndFlush(master);
+                    snapTrackRepository.save(master);
                 } else {
                     JSONArray arrayChild = new JSONArray();
                     JSONObject childNo = new JSONObject();
@@ -412,7 +412,7 @@ public class DecisionTreeService {
                     childNo.put("children", arrayLeaf);
                     SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
                     master.setDtReason(Decision.FAKE.name());
-                    snapTrackRepository.saveAndFlush(master);
+                    snapTrackRepository.save(master);
                 }
                 break;
             case AI:
@@ -442,7 +442,7 @@ public class DecisionTreeService {
                     childYes.put("children", arrayLeaf);
                     SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
                     master.setDtReason(Decision.NOT_FAKE.name());
-                    snapTrackRepository.saveAndFlush(master);
+                    snapTrackRepository.save(master);
                 } else {
                     JSONObject childNo = new JSONObject();
                     JSONArray arrayChild = new JSONArray();
@@ -485,7 +485,7 @@ public class DecisionTreeService {
                         child2No.put("children", arrayLeaf);
                         SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
                         master.setDtReason(Decision.FAKE.name());
-                        snapTrackRepository.saveAndFlush(master);
+                        snapTrackRepository.save(master);
                         // child1.put("children", child2);
                         arrayChild2.put(child2No);
                         arrayChild2.put(child2Yes);
@@ -515,7 +515,7 @@ public class DecisionTreeService {
                         child2Yes.put("children", arrayLeaf);
                         SnapTrackMaster master = snapTrackRepository.findOneByOrderId(decision.getOrderId()).get(0);
                         master.setDtReason(Decision.YELLOW_ZONE.name());
-                        snapTrackRepository.saveAndFlush(master);
+                        snapTrackRepository.save(master);
                         // child1.put("children", child2);
                         arrayChild2.put(child2Yes);
                         arrayChild2.put(child2No);
