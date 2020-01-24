@@ -608,11 +608,15 @@ public class DecisionTreeService {
                 decision.setLoc_validated(true);
 
             String duration = master.getCallDuration();
-            int min = Integer.parseInt(duration.split(":")[0]);
-            int sec = Integer.parseInt(duration.split(":")[1]);
-            int time = min * 60 + sec;
-            if(master.getCallStatus().equals("Connected") && time > 10)
-                decision.setCall_validated(true);
+            if (duration != null) {
+                int min = Integer.parseInt(duration.split(":")[0]);
+                int sec = Integer.parseInt(duration.split(":")[1]);
+                int time = min * 60 + sec;
+                if (master.getCallStatus().equals("Connected") && time > 10)
+                    decision.setCall_validated(true);
+                else
+                    decision.setCall_validated(false);
+            }
             else
                 decision.setCall_validated(false);
             decision.setRtoReason(master.getRtoReason());
