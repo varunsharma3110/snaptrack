@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public interface ISnapTrackRepository extends JpaRepository<SnapTrackMaster,Integer> {
 
-    @Query(" Select sm from SnaptrackMaster smd where sm.dtReason =?1")
+    @Query(" Select sm from SnapTrackMaster sm where sm.dtReason =?1")
     List<SnapTrackMaster> findAllByDecison(String decision);
 
 
