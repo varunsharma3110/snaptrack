@@ -11,15 +11,17 @@ public class SnapTrackMaster implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
     private String orderId;
-    private double latitude;
-    private double longitude;
+    private double custlat;
+    private double custlong;
     private String otp;
-    private String callerStatus;
-    private String calledStatus;
+    private String callStatus;
+    private double felat;
+    private double felong;
     private String callDuration;
     private Date created;
     private String rtoReason;
     private String dtReason;
+    private double distance; // distance between courier and customer lat log
 
     public Integer getId() {
         return id;
@@ -37,20 +39,30 @@ public class SnapTrackMaster implements Serializable {
         this.orderId = orderId;
     }
 
-    public double getLatitude() {
-        return latitude;
+
+
+    public String getRtoReason() {
+        return rtoReason;
     }
 
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
+    public void setRtoReason(String rtoReason) {
+        this.rtoReason = rtoReason;
     }
 
-    public double getLongitude() {
-        return longitude;
+    public double getCustlat() {
+        return custlat;
     }
 
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
+    public void setCustlat(double custlat) {
+        this.custlat = custlat;
+    }
+
+    public double getCustlong() {
+        return custlong;
+    }
+
+    public void setCustlong(double custlong) {
+        this.custlong = custlong;
     }
 
     public String getOtp() {
@@ -61,28 +73,36 @@ public class SnapTrackMaster implements Serializable {
         this.otp = otp;
     }
 
-    public String getCallerStatus() {
-        return callerStatus;
+    public String getCallStatus() {
+        return callStatus;
     }
 
-    public void setCallerStatus(String callerStatus) {
-        this.callerStatus = callerStatus;
+    public void setCallStatus(String callStatus) {
+        this.callStatus = callStatus;
     }
 
-    public String getRtoReason() {
-        return rtoReason;
+    public double getFelat() {
+        return felat;
     }
 
-    public void setRtoReason(String rtoReason) {
-        this.rtoReason = rtoReason;
+    public void setFelat(double felat) {
+        this.felat = felat;
     }
 
-    public String getCalledStatus() {
-        return calledStatus;
+    public double getFelong() {
+        return felong;
     }
 
-    public void setCalledStatus(String calledStatus) {
-        this.calledStatus = calledStatus;
+    public void setFelong(double felong) {
+        this.felong = felong;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
     }
 
     public String getCallDuration() {
@@ -114,15 +134,17 @@ public class SnapTrackMaster implements Serializable {
         return "SnapTrackMaster{" +
                 "id=" + id +
                 ", orderId='" + orderId + '\'' +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
+                ", custlat=" + custlat +
+                ", custlong=" + custlong +
                 ", otp='" + otp + '\'' +
-                ", callerStatus='" + callerStatus + '\'' +
-                ", calledStatus='" + calledStatus + '\'' +
+                ", callStatus='" + callStatus + '\'' +
+                ", felat=" + felat +
+                ", felong=" + felong +
                 ", callDuration='" + callDuration + '\'' +
                 ", created=" + created +
                 ", rtoReason='" + rtoReason + '\'' +
                 ", dtReason='" + dtReason + '\'' +
+                ", distance=" + distance +
                 '}';
     }
 }

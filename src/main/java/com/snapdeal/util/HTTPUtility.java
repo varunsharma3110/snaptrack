@@ -40,7 +40,7 @@ public class HTTPUtility {
         return new JSONObject(response.toString());
     }
 
-    private String postRequest(String path, String body) {
+    public String postRequest(String path, String body) {
         RequestSpecBuilder builder = new RequestSpecBuilder();
         builder.setBody(body);
         builder.setContentType("application/json; charset=UTF-8");
