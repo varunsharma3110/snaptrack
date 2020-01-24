@@ -98,7 +98,7 @@ public class AddressService {
             longGeoAngle.setAngle(unprocessedOrder.getFeLong());
 
             courierGeoLocation.setLattitude(latGeoAngle);
-            courierGeoLocation.setLongitude(latGeoAngle);
+            courierGeoLocation.setLongitude(longGeoAngle);
 
             double diff = geoLocationService.compareTwoPoints(courierGeoLocation, customerGeoLocation);
 
