@@ -1,4 +1,4 @@
-package com.snapdeal.web.controller;
+package com.snapdeal.snaptrack;
 
 import com.snapdeal.sro.GeoAngleSRO;
 import com.snapdeal.sro.GeoPointSRO;
@@ -18,9 +18,9 @@ public class Test {
     }
 
 
-    public static void main(String args[]){
-        testCompareTwoPoints();
-    }
+   // public static void main(String args[]){
+   //     testCompareTwoPoints();
+   // }
 
 
     public static double compareTwoPoints(GeoPointSRO point1, GeoPointSRO point2) {
